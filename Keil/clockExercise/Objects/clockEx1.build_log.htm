@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 C:\Users\mr_robot\Desktop\GitRepo\stm32f4\Keil\clockExercise\clockEx1.uvprojx
-Project File Date:  12/03/2023
+Project File Date:  12/04/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
@@ -30,30 +30,9 @@ Rebuild target 'Target 1'
 assembling startup_stm32f407xx.s...
 compiling main.c...
 compiling system_stm32f4xx.c...
-compiling stm32f4xx_hal_pwr_ex.c...
-C:/Users/mr_robot/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c(379): warning: unused parameter 'Regulator' [-Wunused-parameter]
-void HAL_PWR_EnterSLEEPMode(uint32_t Regulator, uint8_t SLEEPEntry)
-                                     ^
-1 warning generated.
-compiling stm32f4xx_hal_pwr.c...
-compiling stm32f4xx_hal.c...
-compiling stm32f4xx_hal_rcc_ex.c...
-compiling stm32f4xx_hal_gpio.c...
-C:/Users/mr_robot/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c(215): warning: function 'HAL_NVIC_SystemReset' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
-{
-^
-C:/Users/mr_robot/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c(81): warning: In file included from...
-C:/Users/mr_robot/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h(29): warning: In file included from...
-./RTE/Device/STM32F407VGTx\stm32f4xx_hal_conf.h(401): warning: In file included from...
-C:/Users/mr_robot/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_cortex.h(52): warning: padding struct 'MPU_Region_InitTypeDef' with 2 bytes to align 'BaseAddress' [-Wpadded]
-  uint32_t               BaseAddress;           /*!< Specifies the base address of the region to protect.                           */
-                         ^
-2 warnings generated.
-compiling stm32f4xx_hal_cortex.c...
-compiling stm32f4xx_hal_rcc.c...
 linking...
-Program Size: Code=384 RO-data=408 RW-data=0 ZI-data=1632  
-".\Objects\clockEx1.axf" - 0 Error(s), 3 Warning(s).
+Program Size: Code=400 RO-data=408 RW-data=0 ZI-data=1632  
+".\Objects\clockEx1.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -67,64 +46,24 @@ Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
                 Keil.STM32F4xx_DFP.2.17.1
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
-   * Component: STM32Cube Framework Version: 1.0.0
-   * Component: Classic Version: 1.8.1
-   * Component: Common Version: 1.8.1
-   * Component: Cortex Version: 1.8.1
-   * Component: GPIO Version: 1.8.1
-   * Component: PWR Version: 1.8.1
-   * Component: RCC Version: 1.8.1
    * Component: Startup Version: 2.6.3
 
 <h2>Collection of Component include folders:</h2>
-  .\RTE\Device\STM32F407VGTx
   .\RTE\_Target_1
   C:\Users\mr_robot\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
   C:\Users\mr_robot\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include
-  C:\Users\mr_robot\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\STM32F4xx_HAL_Driver\Inc
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ::Device:STM32Cube Framework:1.0.0 (API)
-
    * Component: ARM::CMSIS:CORE:5.5.0
 
-   * Component: Keil::Device:STM32Cube Framework:Classic:1.8.1
-      Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
-      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
-      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
-      Source file:   MDK\Templates\Src\stm32f4xx_it.c
-      Source file:   MDK\Templates\Src\main.c
-      Include file:  MDK\Templates\Inc\main.h
-      Include file:  MDK\Templates_LL\Inc\main.h
-      Include file:  CMSIS\Driver\Config\RTE_Device.h
-      Source file:   MDK\Templates_LL\Src\main.c
-
-   * Component: Keil::Device:STM32Cube HAL:Common:1.8.1
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
-      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
-
-   * Component: Keil::Device:STM32Cube HAL:Cortex:1.8.1
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
-
-   * Component: Keil::Device:STM32Cube HAL:GPIO:1.8.1
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c
-
-   * Component: Keil::Device:STM32Cube HAL:PWR:1.8.1
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c
-
-   * Component: Keil::Device:STM32Cube HAL:RCC:1.8.1
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c
-
    * Component: Keil::Device:Startup:2.6.3
-      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
-      Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
+      Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
