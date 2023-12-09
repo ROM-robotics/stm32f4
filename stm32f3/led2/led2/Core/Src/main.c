@@ -89,18 +89,19 @@ int main(void)
 	__HAL_RCC_GPIOE_CLK_ENABLE();
 	__GPIOA_CLK_ENABLE();
 	
-	GPIO_InitTypeDef *btn;
-	btn->Mode = GPIO_MODE_INPUT;
-	btn->Speed=GPIO_SPEED_FREQ_MEDIUM;
-	btn->Pull=GPIO_NOPULL;
-	HAL_GPIO_Init(GPIOA, btn);
+	GPIO_InitTypeDef btn;
+	btn.Mode = GPIO_MODE_INPUT;
+	btn.Speed=GPIO_SPEED_FREQ_MEDIUM;
+	btn.Pull= GPIO_PULLDOWN;
+	HAL_GPIO_Init(GPIOA, &btn);
 	
-	GPIO_InitTypeDef *pLed;
-	pLed->Mode = GPIO_MODE_OUTPUT_PP;
-	pLed->Speed = GPIO_SPEED_FREQ_MEDIUM;
-	pLed->Pin = GPIO_PIN_8;
+	GPIO_InitTypeDef pLed;
+	pLed.Mode = GPIO_MODE_OUTPUT_PP;
+	pLed.Speed = GPIO_SPEED_FREQ_MEDIUM;
+	pLed.Pull = GPIO_PULLDOWN;
+	pLed.Pin = GPIO_PIN_8;
 	
-	HAL_GPIO_Init(GPIOE, pLed);
+	HAL_GPIO_Init(GPIOE, &pLed);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -108,12 +109,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)==GPIO_PIN_RESET) {
+	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)==GPIO_PIN_SET) {
 		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_SET);
 	}
 	else{
-		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_RESET);
 	}
+	//HAL_Delay(100);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
