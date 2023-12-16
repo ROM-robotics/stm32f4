@@ -108,19 +108,27 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+	
+	//memset(&RCC_OscInitStruct, 0, sizeof(RCC_OscInitStruct);
 
   /** Configure the main internal regulator output voltage
   */
+	// clock speed အမြင့် ဆုံးဆိုရင် power for clock ကို လည်း တင်ဖို့ လိုကောင်း လိုပါမယ်။
+	// Enable the clock for the power controller
   __HAL_RCC_PWR_CLK_ENABLE();
+	
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+	// ဒီခါတော့ HSE သုံးပြီး PLL လုပ်မယ်။
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+	
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+	
   RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
@@ -138,11 +146,18 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
-
+  
+	// ဒီမှာ ဒုတိယ argument ဖြစ်တဲ့ flash latency က အရေးကြီးပါတယ်။ reference maunal ရဲ့ embedded flash memory ကို ကြည့်ပါ။
+	//  flash memory ကို သေချာ read data လုပ်နိုင်ဖို့  wait state ဖြစ်တဲ့ latency ကို သေချာ configure လုပ်ဖို့လိုပါတယ်။
+	//  HCLK frequency နဲ့  supply voltage အရ FLASH_ACR ( flash access control register ) မှာ 
+	//  latency သတ်မှတ်ဖို့လိုတယ်။
+	//  HCLK frequency များရင် flash data read တာ fail နိုင်တယ်၊ table ကို ကြည့်ပြီး latency ရဲ့  cpu cycle ကို ဆုံးဖြတ်ပါ။
+	//  ဆုံးဖြတ်တာမှားရင် application အလုပ်မလုပ်တာ ဘာမှန်းမသိ အဖြေရှာမရတာမျိုးတွေဖြစ်နိုင်တယ်။
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
   {
     Error_Handler();
   }
+		// MCO2 --> သူသည် MCO2 clock output 2 ဖြစ်ပါတယ်။ 
   HAL_RCC_MCOConfig(RCC_MCO2, RCC_MCO2SOURCE_SYSCLK, RCC_MCODIV_4);
 }
 
