@@ -1,0 +1,10 @@
+
+/* HCLK ကို  prescaler 1 ထားပြီး 168MHz ရစေသည်။ */
+RCC->CFGR &= ~( 0xF << 4 );
+
+/* APB1 prescaler 4 , (168/4) = 42MHz */
+RCC->CFGR &= ~( 0x7 << 10 );
+RCC->CFGR |= ( 0x5 << 10 );
+
+
+
