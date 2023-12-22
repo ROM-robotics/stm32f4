@@ -249,9 +249,9 @@ static void MX_GPIO_Init(void)
 
 static char* sendInt(const long int* my_int)
 {
-	 signed int x_len = snprintf( NULL, 0, "%ld", *my_int);
-   char* my_int_str = (char*)malloc( x_len+1 );
-   snprintf( my_int_str, x_len+1, "%ld", *my_int);
+	 signed int int_len = snprintf( NULL, 0, "%ld", *my_int);
+   char* my_int_str = (char*)malloc( int_len+1 );
+   snprintf( my_int_str, int_len+1, "%ld", *my_int);
 	//free(*my_int);
 	return my_int_str;
 }
@@ -259,9 +259,9 @@ static char* sendInt(const long int* my_int)
 
 static char* sendFloat(const float* my_float)
 {
-	 signed int x_len = snprintf( NULL, 0, "%lF", *my_float);
-   char* my_float_str = (char*)malloc( x_len+1 );
-   snprintf( my_float_str, x_len+1, "%lF", *my_float);
+	 signed int float_len = snprintf( NULL, 0, "%lF", *my_float);
+   char* my_float_str = (char*)malloc( float_len+1 );
+   snprintf( my_float_str, float_len+1, "%lF", *my_float);
 	//free(*my_int);
 	return my_float_str;
 }

@@ -105,7 +105,7 @@ int main(void)
 		// DMA ရဲ့  circular ring buffer ကို ပြည့် အောင် ဖြည့် ပြီး စမ်းကြည့်ပါ။ 
 
     /* USER CODE BEGIN 3 */
-		HAL_UART_Transmit(&huart2, (uint8_t *)tx_data, strlen(tx_data),1);
+		HAL_UART_Transmit(&huart2, (uint8_t *)tx_data, strlen(tx_data),10); // 10 millis // check for shortest period
 		HAL_Delay(500);
   }
   /* USER CODE END 3 */
