@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include <string.h>
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -59,6 +60,10 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 GPIO_PinState btn_status;
+#include "stdio.h"  // snprintf()
+#include "stdlib.h" // malloc()
+static char* sendInt(const long int* my_int); // pass by address
+static char* sendFloat(const float* my_float);
 /* USER CODE END 0 */
 
 /**
@@ -241,6 +246,25 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+static char* sendInt(const long int* my_int)
+{
+	 signed int x_len = snprintf( NULL, 0, "%ld", *my_int);
+   char* my_int_str = (char*)malloc( x_len+1 );
+   snprintf( my_int_str, x_len+1, "%ld", *my_int);
+	//free(*my_int);
+	return my_int_str;
+}
+
+
+static char* sendFloat(const float* my_float)
+{
+	 signed int x_len = snprintf( NULL, 0, "%lF", *my_float);
+   char* my_float_str = (char*)malloc( x_len+1 );
+   snprintf( my_float_str, x_len+1, "%lF", *my_float);
+	//free(*my_int);
+	return my_float_str;
+}
 
 /* USER CODE END 4 */
 
