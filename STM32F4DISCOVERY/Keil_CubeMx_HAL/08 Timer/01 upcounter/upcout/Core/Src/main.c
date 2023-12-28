@@ -288,7 +288,7 @@ static void MX_TIM9_Init(void)
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
 
   /* USER CODE BEGIN TIM9_Init 1 */
-
+	
   /* USER CODE END TIM9_Init 1 */
   htim9.Instance = TIM9;
   htim9.Init.Prescaler = 16;
@@ -306,7 +306,7 @@ static void MX_TIM9_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM9_Init 2 */
-
+	
   /* USER CODE END TIM9_Init 2 */
 
 }
