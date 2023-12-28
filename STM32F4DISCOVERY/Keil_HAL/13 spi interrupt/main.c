@@ -12,7 +12,7 @@ int main(void)
 	HAL_Init();
 	GPIO_Config();
 	SPI_Config();
-	
+	 
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_RESET);
 	spi_tx_buf[0] = 0x20;
 	spi_tx_buf[1] = 0x91;
