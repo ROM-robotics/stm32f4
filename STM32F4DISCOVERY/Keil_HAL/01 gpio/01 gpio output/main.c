@@ -5,6 +5,7 @@ void msDelay(uint32_t ms);
 
 int main(void)
 {
+	
 	configLEDPins();
 	
 	while(1)
