@@ -70,7 +70,7 @@ void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN 0 */
 TIM_HandleTypeDef htim1;
 /* USER CODE END 0 */
-
+uint16_t dutycycle = 10;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -113,8 +113,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    MX_USB_HOST_Process();
-
+    //MX_USB_HOST_Process();
+		htim1.Instance->CCR1 = dutycycle;
+		dutycycle += 10;
+		if(dutycycle > 90) dutycycle = 10;
+		HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
