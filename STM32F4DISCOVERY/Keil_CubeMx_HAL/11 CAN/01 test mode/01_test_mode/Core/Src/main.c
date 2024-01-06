@@ -17,18 +17,19 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
 	
-  /* USER CODE BEGIN 2 */
+  /* USER CODE BEGIN 2 
 	if( HAL_CAN_Start(&hcan1) != HAL_OK ) 
 	{ 
 		Error_Handler(); 
-	}
+	}*/
+	HAL_CAN_Start(&hcan1);
 	CAN1_Tx();
 
   /* USER CODE END 2 */
 	
   while (1)
   {
-		
+		CAN1_Tx();
   }
 	
 }

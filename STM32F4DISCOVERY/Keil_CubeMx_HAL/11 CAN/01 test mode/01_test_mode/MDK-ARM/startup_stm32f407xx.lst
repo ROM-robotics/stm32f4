@@ -849,12 +849,12 @@ interwork --depend=01_test_mode\startup_stm32f407xx.d -o01_test_mode\startup_st
 ARM Macro Assembler    Page 14 
 
 
-m32f407xx.o -I.\RTE\_01_test_mode -IC:\Users\mr_robot\AppData\Local\Arm\Packs\A
-RM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\mr_robot\AppData\Local\Arm\Packs\K
-eil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include --predefine=
-"__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 535" --predefine="_RTE_ SET
-A 1" --predefine="STM32F407xx SETA 1" --predefine="_RTE_ SETA 1" --list=startup
-_stm32f407xx.lst startup_stm32f407xx.s
+m32f407xx.o -I.\RTE\_01_test_mode -IC:\Users\User\AppData\Local\Arm\Packs\ARM\C
+MSIS\5.9.0\CMSIS\Core\Include -IC:\Users\User\AppData\Local\Arm\Packs\Keil\STM3
+2F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include --predefine="__UVISI
+ON_VERSION SETA 535" --predefine="_RTE_ SETA 1" --predefine="STM32F407xx SETA 1
+" --predefine="_RTE_ SETA 1" --list=startup_stm32f407xx.lst startup_stm32f407xx
+.s
 
 
 
@@ -1958,4 +1958,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-449 symbols in table
+448 symbols in table
