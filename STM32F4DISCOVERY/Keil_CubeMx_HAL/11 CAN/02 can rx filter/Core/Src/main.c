@@ -54,7 +54,8 @@ int main(void)
 	
 	CAN1_FilterConfig();
 	
-	if( HAL_CAN_Start(&hcan1) != HAL_OK ) { Error_Handler(); }
+	if( HAL_CAN_Start(&hcan1) != HAL_OK ) 
+	{ Error_Handler(); }
 	
 	CAN1_Tx();
 	CAN1_Rx();
@@ -120,15 +121,7 @@ void SystemClock_Config(void)
   */
 static void MX_CAN1_Init(void)
 {
-
-  /* USER CODE BEGIN CAN1_Init 0 */
-
-  /* USER CODE END CAN1_Init 0 */
-
-  /* USER CODE BEGIN CAN1_Init 1 */
-
-  /* USER CODE END CAN1_Init 1 */
-  hcan1.Instance = CAN1;
+ hcan1.Instance = CAN1;
   hcan1.Init.Mode = CAN_MODE_LOOPBACK;
   hcan1.Init.TimeTriggeredMode = DISABLE;
   hcan1.Init.AutoBusOff = DISABLE;
@@ -138,19 +131,15 @@ static void MX_CAN1_Init(void)
   hcan1.Init.TransmitFifoPriority = DISABLE;
 	
 	// CAN BIT TIMING
-	
   hcan1.Init.Prescaler = 3;
 	hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan1.Init.TimeSeg1 = CAN_BS1_13TQ;
+  hcan1.Init.TimeSeg1 = CAN_BS1_11TQ;
   hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
 	
   if (HAL_CAN_Init(&hcan1) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN CAN1_Init 2 */
-
-  /* USER CODE END CAN1_Init 2 */
 
 }
 
@@ -176,25 +165,27 @@ static void MX_GPIO_Init(void)
 void CAN1_Tx(void)
 {
 	uint32_t TxMailbox;
-	uint8_t msg[11] = {'R','0','M',' ','D','y','n','a','m','i','c'};
+	uint8_t msg[12] = {'R','0','M',' ','D','y','n','a','m','i','c','s'};
 	
 	CAN_TxHeaderTypeDef TxHeader;
-	TxHeader.DLC = 5;
+	TxHeader.DLC = 8;
 	TxHeader.StdId = 0x45D;
 	TxHeader.IDE = CAN_ID_STD;
 	TxHeader.RTR = CAN_RTR_DATA;
 	
-	if( HAL_CAN_AddTxMessage(&hcan1, &TxHeader, msg, &TxMailbox) != HAL_OK)
+		// add message to Transmit MailBox
+	if( HAL_CAN_AddTxMessage(&hcan1, &TxHeader, msg, &TxMailbox) != HAL_OK )
 	{
 		Error_Handler();
 	}
+	// Polling ( Continuous checking ) for Transmit status
 	while( HAL_CAN_IsTxMessagePending(&hcan1, TxMailbox) );
 	
 }
 void CAN1_Rx(void)
 {
 	CAN_RxHeaderTypeDef RxHeader;
-	uint8_t rec_msg[11];
+	uint8_t rec_msg[12];
 	
 	while( !HAL_CAN_GetRxFifoFillLevel(&hcan1, CAN_RX_FIFO0) );
 	

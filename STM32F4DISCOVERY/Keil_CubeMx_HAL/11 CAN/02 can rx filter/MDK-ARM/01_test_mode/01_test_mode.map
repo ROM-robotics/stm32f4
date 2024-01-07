@@ -700,7 +700,7 @@ Image Symbol Table
     i.HAL_SYSTICK_Config                     0x080011dc   Section        0  stm32f4xx_hal_cortex.o(i.HAL_SYSTICK_Config)
     i.HardFault_Handler                      0x08001204   Section        0  stm32f4xx_it.o(i.HardFault_Handler)
     i.MX_CAN1_Init                           0x08001208   Section        0  main.o(i.MX_CAN1_Init)
-    MX_CAN1_Init                             0x08001209   Thumb Code    58  main.o(i.MX_CAN1_Init)
+    MX_CAN1_Init                             0x08001209   Thumb Code    60  main.o(i.MX_CAN1_Init)
     i.MemManage_Handler                      0x0800124c   Section        0  stm32f4xx_it.o(i.MemManage_Handler)
     i.NMI_Handler                            0x0800124e   Section        0  stm32f4xx_it.o(i.NMI_Handler)
     i.PendSV_Handler                         0x08001250   Section        0  stm32f4xx_it.o(i.PendSV_Handler)
@@ -1107,7 +1107,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       480         56          0          0         40     650278   main.o
+       480         54          0          0         40     650278   main.o
         64         26        392          0       1536        896   startup_stm32f407xx.o
        144         24          0         12          0       9145   stm32f4xx_hal.o
       1154          6          0          0          0       7334   stm32f4xx_hal_can.o
@@ -1119,7 +1119,7 @@ Image component sizes
         16          4         16          4          0       1291   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-      3994        242        442         16       1576     714658   Object Totals
+      3994        240        442         16       1576     714658   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          8          0          2          0          0          0   (incl. Padding)
 
@@ -1172,9 +1172,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4602        258        442         16       1672     712078   Grand Totals
-      4602        258        442         16       1672     712078   ELF Image Totals
-      4602        258        442         16          0          0   ROM Totals
+      4602        256        442         16       1672     712078   Grand Totals
+      4602        256        442         16       1672     712078   ELF Image Totals
+      4602        256        442         16          0          0   ROM Totals
 
 ==============================================================================
 
