@@ -91,7 +91,7 @@ static void MX_CAN1_Init(void)
 	// CAN BIT TIMING
   hcan1.Init.Prescaler = 3;
 	hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan1.Init.TimeSeg1 = CAN_BS1_13TQ;
+  hcan1.Init.TimeSeg1 = CAN_BS1_11TQ;
   hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
 	
   if (HAL_CAN_Init(&hcan1) != HAL_OK)
