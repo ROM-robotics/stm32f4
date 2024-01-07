@@ -17,12 +17,11 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
 	
-  /* USER CODE BEGIN 2 
+  /* USER CODE BEGIN 2 */
 	if( HAL_CAN_Start(&hcan1) != HAL_OK ) 
 	{ 
 		Error_Handler(); 
-	}*/
-	HAL_CAN_Start(&hcan1);
+	}
 	CAN1_Tx();
 
   /* USER CODE END 2 */
@@ -125,7 +124,7 @@ void CAN1_Tx(void)
 	uint8_t msg[12] = {'R','0','M',' ','D','y','n','a','m','i','c','s'};
 	
 	CAN_TxHeaderTypeDef TxHeader;
-	TxHeader.DLC = 12;
+	TxHeader.DLC = 8;
 	TxHeader.StdId = 0x45D;
 	TxHeader.IDE = CAN_ID_STD;
 	TxHeader.RTR = CAN_RTR_DATA;
