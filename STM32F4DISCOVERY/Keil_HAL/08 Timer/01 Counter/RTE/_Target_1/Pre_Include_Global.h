@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'upcount' 
+ * Project: '01_counter' 
  * Target:  'Target 1' 
  */
 
