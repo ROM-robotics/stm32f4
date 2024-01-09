@@ -26,6 +26,7 @@
 static _Bool use_clock_output_for_oscilloscope = 1;
 int main(void) 
 {
+	//___ROM_Init();
 	___ROM_SystemClock_Config(use_clock_output_for_oscilloscope);
 	
 	while(1)
@@ -35,5 +36,15 @@ int main(void)
 	}
 }
 
+void ___ROM_Init(void)
+{
+	NVIC_SetPriorityGrouping(0x00000003U);
+	
+	if( SysTick_Config(SystemCoreClock / 1000U) == 0Ul ) { while(1) {} }
+	
+	uint32_t prioritygroup = 0x00U;
+	prioritygroup = NVIC_GetPriorityGrouping();
+	NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(prioritygroup, 15U, 0U));
+}
 
 

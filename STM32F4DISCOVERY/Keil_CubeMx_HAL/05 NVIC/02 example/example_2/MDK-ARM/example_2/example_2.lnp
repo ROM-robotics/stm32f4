@@ -1,0 +1,25 @@
+--cpu=Cortex-M4.fp.sp
+"example_2\startup_stm32f407xx.o"
+"example_2\main.o"
+"example_2\stm32f4xx_it.o"
+"example_2\stm32f4xx_hal_msp.o"
+"example_2\stm32f4xx_hal_tim.o"
+"example_2\stm32f4xx_hal_tim_ex.o"
+"example_2\stm32f4xx_hal_rcc.o"
+"example_2\stm32f4xx_hal_rcc_ex.o"
+"example_2\stm32f4xx_hal_flash.o"
+"example_2\stm32f4xx_hal_flash_ex.o"
+"example_2\stm32f4xx_hal_flash_ramfunc.o"
+"example_2\stm32f4xx_hal_gpio.o"
+"example_2\stm32f4xx_hal_dma_ex.o"
+"example_2\stm32f4xx_hal_dma.o"
+"example_2\stm32f4xx_hal_pwr.o"
+"example_2\stm32f4xx_hal_pwr_ex.o"
+"example_2\stm32f4xx_hal_cortex.o"
+"example_2\stm32f4xx_hal.o"
+"example_2\stm32f4xx_hal_exti.o"
+"example_2\system_stm32f4xx.o"
+--strict --scatter "example_2\example_2.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "example_2.map" -o example_2\example_2.axf

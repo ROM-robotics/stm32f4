@@ -8,5 +8,8 @@
 #include "stm32f4xx.h"
 #include "rom_clock.h"
 
+// Reset all peripherals, Initializes the Flash interface and Systick
+void ___ROM_Init(void);
+
 
 #endif
