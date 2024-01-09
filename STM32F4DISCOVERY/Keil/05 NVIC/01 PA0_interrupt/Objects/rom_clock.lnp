@@ -1,0 +1,11 @@
+--cpu=Cortex-M4.fp.sp
+".\objects\main.o"
+".\objects\rom_clock.o"
+".\objects\rom_nvic.o"
+".\objects\rom_it.o"
+".\objects\startup_stm32f407xx.o"
+".\objects\system_stm32f4xx.o"
+--strict --scatter ".\Objects\rom_clock.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\rom_clock.map" -o .\Objects\rom_clock.axf
