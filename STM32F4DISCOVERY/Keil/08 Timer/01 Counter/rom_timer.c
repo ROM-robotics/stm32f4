@@ -35,20 +35,22 @@ void ___ROM_ROS2_HZ(uint16_t ros2_frequency)
 	
 	switch(ros2_frequency)
 	{
-		case 1000: TIM9->PSC = 83; TIM9->ARR = 2000-1;  break;	//  1 ms
-		case 500: TIM9->PSC = 83; TIM9->ARR = 4000-1;  break;	//  2 ms
-		case 200: TIM9->PSC = 83; TIM9->ARR = 10000-1;  break;	//  5 ms
-		case 100: TIM9->ARR = 10000-1; break;										// 10 ms
-		case 90: TIM9->ARR  = 11111-1; break;
-		case 80: TIM9->ARR  = 12500-1; break;
-		case 70: TIM9->ARR  = 14285-1; break;
-		case 60: TIM9->ARR  = 16666-1; break;
-		case 50: TIM9->ARR  = 20000-1; break;
-		case 40: TIM9->ARR  = 25000-1; break;
-		case 30: TIM9->ARR  = 33333-1; break;
-		case 20: TIM9->ARR  = 50000-1; break;
+		case 1000: TIM9->PSC = 83; TIM9->ARR = 2000-1;  break;	  //  1 ms
+		case 500:  TIM9->PSC = 83; TIM9->ARR = 4000-1;  break;	  //  2 ms
+		case 200:  TIM9->PSC = 83; TIM9->ARR = 10000-1;  break;	  //  5 ms
+		case 100:  TIM9->ARR = 10000-1; break;										// 10 ms
+		case 90:   TIM9->ARR  = 11111-1; break;
+		case 80:   TIM9->ARR  = 12500-1; break;
+		case 70:   TIM9->ARR  = 14285-1; break;
+		case 60:   TIM9->ARR  = 16666-1; break;
+		case 50:   TIM9->ARR  = 20000-1; break;
+		case 40:   TIM9->ARR  = 25000-1; break;
+		case 30:   TIM9->ARR  = 33333-1; break;
+		case 20:   TIM9->ARR  = 50000-1; break;
+		case 10:   TIM9->PSC = 16800-1;  TIM9->ARR  = 1000-1; break; 	// 100 ms
+		case 1:    TIM9->PSC = 16800-1;  TIM9->ARR  = 10000-1; break; // 1 S
 		
-		default: TIM9->ARR  = 20000; break;   	// 50Hz
+		default: 	 TIM9->ARR  = 20000; break;   	// 50Hz
 	}
 	
 	TIM9->CNT  = 0;		// clear counter
