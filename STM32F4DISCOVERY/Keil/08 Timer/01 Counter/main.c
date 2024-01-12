@@ -32,7 +32,7 @@ int main(void)
 	
 	___ROM_GPIO_INIT();
 	___ROM_PA0_EXTI_Init();
-	___ROM_ROS2_HZ(200);
+	___ROM_ROS2_HZ(1000);
 	
 	while(1)
 	{
