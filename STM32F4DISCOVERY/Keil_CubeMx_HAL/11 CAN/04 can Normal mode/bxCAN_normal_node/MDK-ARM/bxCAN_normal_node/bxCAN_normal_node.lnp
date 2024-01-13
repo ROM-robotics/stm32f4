@@ -1,0 +1,26 @@
+--cpu=Cortex-M4.fp.sp
+"bxcan_normal_node\startup_stm32f407xx.o"
+"bxcan_normal_node\main.o"
+"bxcan_normal_node\stm32f4xx_it.o"
+"bxcan_normal_node\stm32f4xx_hal_msp.o"
+"bxcan_normal_node\stm32f4xx_hal_can.o"
+"bxcan_normal_node\stm32f4xx_hal_rcc.o"
+"bxcan_normal_node\stm32f4xx_hal_rcc_ex.o"
+"bxcan_normal_node\stm32f4xx_hal_flash.o"
+"bxcan_normal_node\stm32f4xx_hal_flash_ex.o"
+"bxcan_normal_node\stm32f4xx_hal_flash_ramfunc.o"
+"bxcan_normal_node\stm32f4xx_hal_gpio.o"
+"bxcan_normal_node\stm32f4xx_hal_dma_ex.o"
+"bxcan_normal_node\stm32f4xx_hal_dma.o"
+"bxcan_normal_node\stm32f4xx_hal_pwr.o"
+"bxcan_normal_node\stm32f4xx_hal_pwr_ex.o"
+"bxcan_normal_node\stm32f4xx_hal_cortex.o"
+"bxcan_normal_node\stm32f4xx_hal.o"
+"bxcan_normal_node\stm32f4xx_hal_exti.o"
+"bxcan_normal_node\stm32f4xx_hal_tim.o"
+"bxcan_normal_node\stm32f4xx_hal_tim_ex.o"
+"bxcan_normal_node\system_stm32f4xx.o"
+--strict --scatter "bxCAN_normal_node\bxCAN_normal_node.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "bxCAN_normal_node.map" -o bxCAN_normal_node\bxCAN_normal_node.axf
