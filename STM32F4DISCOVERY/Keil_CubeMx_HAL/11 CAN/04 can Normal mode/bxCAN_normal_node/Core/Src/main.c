@@ -11,8 +11,12 @@ static void MX_TIM9_Init(void);
 void CAN1_Tx(void);
 void CAN1_Rx(void);
 void CAN1_FilterConfig(void);
-
+void Led_manage(uint8_t led);
+void SendResponse( uint32_t StdId );
 uint8_t led_no = 0;
+uint8_t request_counter = 0;
+
+CAN_RxHeaderTypeDef RxHeader;
 
 int main(void)
 {
@@ -178,8 +182,30 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim ) 
 {
+	CAN_TxHeaderTypeDef TxHeader;
+	
+	uint32_t mailbox;
+	
+	uint8_t msg; 
+	
+	if(request_counter == 4)
+	{
+		TxHeader.DLC = 2; // Node 1 demanding 2 Bytes of reply
+		TxHeader.StdId = 0x651;
+		TxHeader.IDE = CAN_ID_STD;
+		TxHeader.RTR = CAN_RTR_REMOTE;
+		if( HAL_CAN_AddTxMessage(&hcan1, &TxHeader, &msg, &mailbox) != HAL_OK)
+		{
+			Error_Handler();
+		}
+		request_counter = 0;
+	} else {
+		CAN1_Tx();
+		request_counter++;
+	}
+	
 	UNUSED(htim);
-	CAN1_Tx();
+	//CAN1_Tx();
 }
 
 /* USER CODE BEGIN 4 */
@@ -245,19 +271,81 @@ void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan)
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-	CAN_RxHeaderTypeDef RxHeader;
-	uint8_t rec_msg[11];
 	
+	uint8_t receive_msg[8];
 	
-	if( HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &RxHeader, rec_msg) != HAL_OK) {
+	//char msg[50];
+	
+	if ( HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,&RxHeader, receive_msg ) != HAL_OK )
+	{
 		Error_Handler();
 	}
+	
+	if( RxHeader.StdId == 0x65D && RxHeader.RTR == 0 )
+	{
+		// This is data frame sent by N1
+		Led_manage(receive_msg[0]);
+		// sprintf()
+	}
+	else if ( RxHeader.StdId == 0x651 && RxHeader.RTR == 1 )
+	{
+		// This is remote frame sent by N1
+		SendResponse(RxHeader.StdId);
+		return;
+	}
+	else if ( RxHeader.StdId == 0x651 && RxHeader.RTR == 0 )
+	{
+		// This is data frame sent by N2
+		// sprintf()
+	}
+	
 }
 void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan)
 {
 	// printf();
 }
 
+void Led_manage(uint8_t led)
+{
+	switch( led )
+	{
+		case 1: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+		
+		case 2: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+		
+		case 3: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+		
+		case 4: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
+	}
+}
+void SendResponse( uint32_t StdId )
+{
+	CAN_TxHeaderTypeDef txHeader;
+
+	uint32_t txMailbox;
+
+	uint8_t response[2] = { 0xAB, 0xCD };
+
+	txHeader.DLC = 2;
+	txHeader.StdId = StdId;
+	txHeader.IDE = CAN_ID_STD;
+	txHeader.RTR = CAN_RTR_DATA;
+
+	if( HAL_CAN_AddTxMessage(&hcan1, &txHeader, response, &txMailbox) != HAL_OK )
+	{	Error_Handler();	}
+}
 /* USER CODE END 4 */
 
 
