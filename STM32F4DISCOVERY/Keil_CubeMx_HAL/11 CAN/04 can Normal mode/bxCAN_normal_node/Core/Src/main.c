@@ -31,10 +31,10 @@ int main(void)
 	// before CAN1 Start, Enable Interrupt
 	if( HAL_CAN_ActivateNotification(&hcan1, CAN_IT_TX_MAILBOX_EMPTY | CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_BUSOFF) != HAL_OK ) 
 	{
-		// Error_Handler();
+		Error_Handler();
 	} 
-	
-	if( HAL_CAN_Start(&hcan1) != HAL_OK ) { Error_Handler(); }
+	// this need 11 continuous ressive state
+	//if( HAL_CAN_Start(&hcan1) != HAL_OK ) { Error_Handler(); }
 	
   while (1)
   {
@@ -87,40 +87,31 @@ void SystemClock_Config(void)
 static void MX_CAN1_Init(void)
 {
   hcan1.Instance = CAN1;
-  hcan1.Init.Prescaler = 3;
   hcan1.Init.Mode = CAN_MODE_NORMAL;
-  hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan1.Init.TimeSeg1 = CAN_BS1_11TQ;
-  hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
   hcan1.Init.TimeTriggeredMode = DISABLE;
   hcan1.Init.AutoBusOff = ENABLE;
   hcan1.Init.AutoWakeUp = DISABLE;
   hcan1.Init.AutoRetransmission = ENABLE;
   hcan1.Init.ReceiveFifoLocked = DISABLE;
   hcan1.Init.TransmitFifoPriority = DISABLE;
+	
+	
+  hcan1.Init.Prescaler = 3;
+  hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan1.Init.TimeSeg1 = CAN_BS1_11TQ;
+  hcan1.Init.TimeSeg2 = CAN_BS2_2TQ;
+	
   if (HAL_CAN_Init(&hcan1) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN CAN1_Init 2 */
-
-  /* USER CODE END CAN1_Init 2 */
-
 }
 
 
 static void MX_TIM9_Init(void)
 {
-
-  /* USER CODE BEGIN TIM9_Init 0 */
-
-  /* USER CODE END TIM9_Init 0 */
-
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-
-  /* USER CODE BEGIN TIM9_Init 1 */
-
-  /* USER CODE END TIM9_Init 1 */
+	
   htim9.Instance = TIM9;
   htim9.Init.Prescaler = 16799;
   htim9.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -136,19 +127,13 @@ static void MX_TIM9_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN TIM9_Init 2 */
-
-  /* USER CODE END TIM9_Init 2 */
-
 }
 
 
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
-
+	
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -174,9 +159,6 @@ static void MX_GPIO_Init(void)
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI0_IRQn);
-
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -194,7 +176,7 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim )
 		TxHeader.StdId = 0x651;
 		TxHeader.IDE = CAN_ID_STD;
 		TxHeader.RTR = CAN_RTR_REMOTE;
-		if( HAL_CAN_AddTxMessage(&hcan1, &TxHeader, &msg, &mailbox) != HAL_OK)
+		if( HAL_CAN_AddTxMessage(&hcan1, &TxHeader, &msg, &mailbox) != HAL_OK )
 		{
 			Error_Handler();
 		}
@@ -205,7 +187,6 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim )
 	}
 	
 	UNUSED(htim);
-	//CAN1_Tx();
 }
 
 /* USER CODE BEGIN 4 */
@@ -251,8 +232,6 @@ void CAN1_FilterConfig(void)
 	{
 		Error_Handler();
 	}
-	
-		
 }
 
 // Callback functions
@@ -273,8 +252,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
 	
 	uint8_t receive_msg[8];
-	
-	//char msg[50];
 	
 	if ( HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,&RxHeader, receive_msg ) != HAL_OK )
 	{
