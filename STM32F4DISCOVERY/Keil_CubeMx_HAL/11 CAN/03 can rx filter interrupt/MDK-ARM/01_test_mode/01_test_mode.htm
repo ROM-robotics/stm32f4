@@ -3,7 +3,7 @@
 <title>Static Call Graph - [01_test_mode\01_test_mode.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image 01_test_mode\01_test_mode.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun Jan 07 16:42:11 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Jan 15 14:42:38 2024
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -586,28 +586,28 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[21]"></a>CAN1_RX0_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(i.CAN1_RX0_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = CAN1_RX0_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_RxFifo0MsgPendingCallback &rArr; HAL_CAN_GetRxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = CAN1_RX0_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_TxMailbox2CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[22]"></a>CAN1_RX1_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(i.CAN1_RX1_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = CAN1_RX1_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_RxFifo0MsgPendingCallback &rArr; HAL_CAN_GetRxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = CAN1_RX1_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_TxMailbox2CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[23]"></a>CAN1_SCE_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(i.CAN1_SCE_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = CAN1_SCE_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_RxFifo0MsgPendingCallback &rArr; HAL_CAN_GetRxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = CAN1_SCE_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_TxMailbox2CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[20]"></a>CAN1_TX_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(i.CAN1_TX_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = CAN1_TX_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_RxFifo0MsgPendingCallback &rArr; HAL_CAN_GetRxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = CAN1_TX_IRQHandler &rArr; HAL_CAN_IRQHandler &rArr; HAL_CAN_TxMailbox2CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
@@ -619,6 +619,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_AddTxMessage
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_TxMailbox2CompleteCallback
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_TxMailbox1CompleteCallback
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_TxMailbox0CompleteCallback
 </UL>
 
 <P><STRONG><a name="[a]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DebugMon_Handler))
@@ -651,7 +654,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[77]"></a>HAL_CAN_IRQHandler</STRONG> (Thumb, 508 bytes, Stack size 40 bytes, stm32f4xx_hal_can.o(i.HAL_CAN_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = HAL_CAN_IRQHandler &rArr; HAL_CAN_RxFifo0MsgPendingCallback &rArr; HAL_CAN_GetRxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = HAL_CAN_IRQHandler &rArr; HAL_CAN_TxMailbox2CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_WakeUpFromRxMsgCallback
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_TxMailbox2AbortCallback
@@ -729,24 +732,36 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 
-<P><STRONG><a name="[7a]"></a>HAL_CAN_TxMailbox0CompleteCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.HAL_CAN_TxMailbox0CompleteCallback))
-<BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
+<P><STRONG><a name="[7a]"></a>HAL_CAN_TxMailbox0CompleteCallback</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, main.o(i.HAL_CAN_TxMailbox0CompleteCallback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = HAL_CAN_TxMailbox0CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_Tx
+</UL>
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 
 <P><STRONG><a name="[7d]"></a>HAL_CAN_TxMailbox1AbortCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_can.o(i.HAL_CAN_TxMailbox1AbortCallback))
 <BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 
-<P><STRONG><a name="[7c]"></a>HAL_CAN_TxMailbox1CompleteCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.HAL_CAN_TxMailbox1CompleteCallback))
-<BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
+<P><STRONG><a name="[7c]"></a>HAL_CAN_TxMailbox1CompleteCallback</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, main.o(i.HAL_CAN_TxMailbox1CompleteCallback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = HAL_CAN_TxMailbox1CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_Tx
+</UL>
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 
 <P><STRONG><a name="[7f]"></a>HAL_CAN_TxMailbox2AbortCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_can.o(i.HAL_CAN_TxMailbox2AbortCallback))
 <BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 
-<P><STRONG><a name="[7e]"></a>HAL_CAN_TxMailbox2CompleteCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(i.HAL_CAN_TxMailbox2CompleteCallback))
-<BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
+<P><STRONG><a name="[7e]"></a>HAL_CAN_TxMailbox2CompleteCallback</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, main.o(i.HAL_CAN_TxMailbox2CompleteCallback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = HAL_CAN_TxMailbox2CompleteCallback &rArr; CAN1_Tx &rArr; HAL_CAN_AddTxMessage
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_Tx
+</UL>
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_IRQHandler
 </UL>
 
 <P><STRONG><a name="[85]"></a>HAL_CAN_WakeUpFromRxMsgCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_can.o(i.HAL_CAN_WakeUpFromRxMsgCallback))

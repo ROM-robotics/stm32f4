@@ -230,14 +230,17 @@ void CAN1_SCE_IRQHandler(void)
 // Callback functions
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
 {
+	CAN1_Tx();
 	// printf()
 }
 void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan)
 {
+	CAN1_Tx();
 	// printf()
 }
 void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan)
 {
+	CAN1_Tx();
 	// printf()
 }
 
