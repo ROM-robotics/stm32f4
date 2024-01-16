@@ -13,6 +13,7 @@ void CAN1_Rx(void);
 void CAN1_FilterConfig(void);
 void Led_manage(uint8_t led);
 void SendResponse( uint32_t StdId );
+
 uint8_t led_no = 0;
 uint8_t request_counter = 0;
 
@@ -34,7 +35,7 @@ int main(void)
 		Error_Handler();
 	} 
 	// this need 11 continuous ressive state
-	//if( HAL_CAN_Start(&hcan1) != HAL_OK ) { Error_Handler(); }
+	if( HAL_CAN_Start(&hcan1) != HAL_OK ) { Error_Handler(); }
 	
   while (1)
   {
@@ -113,7 +114,7 @@ static void MX_TIM9_Init(void)
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
 	
   htim9.Instance = TIM9;
-  htim9.Init.Prescaler = 16799;
+  htim9.Init.Prescaler = 167;
   htim9.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim9.Init.Period = 9999;
   htim9.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -204,7 +205,7 @@ void CAN1_Tx(void)
 	TxHeader.IDE = CAN_ID_STD;
 	TxHeader.RTR = CAN_RTR_DATA;
 	
-	HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
+	//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
 	
 	if( HAL_CAN_AddTxMessage(&hcan1, &TxHeader, &msg, &TxMailbox) != HAL_OK)
 	{
@@ -274,6 +275,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 	{
 		// This is data frame sent by N2
 		// sprintf()
+		int a = 3;
 	}
 	
 }
@@ -290,21 +292,25 @@ void Led_manage(uint8_t led)
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+						break;
 		
 		case 2: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+						break;
 		
 		case 3: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+						break;
 		
 		case 4: HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 						HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
+						break;
 	}
 }
 void SendResponse( uint32_t StdId )
@@ -321,7 +327,9 @@ void SendResponse( uint32_t StdId )
 	txHeader.RTR = CAN_RTR_DATA;
 
 	if( HAL_CAN_AddTxMessage(&hcan1, &txHeader, response, &txMailbox) != HAL_OK )
-	{	Error_Handler();	}
+	{	
+		Error_Handler();	
+	 }
 }
 /* USER CODE END 4 */
 
