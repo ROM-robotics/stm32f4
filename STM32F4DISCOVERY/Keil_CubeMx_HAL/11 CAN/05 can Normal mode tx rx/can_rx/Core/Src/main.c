@@ -54,11 +54,11 @@ int main(void)
 		{
 			for(int i=0;i<rxData[1];i++)
 			{
-				HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12 | GPIO_PIN_13);
+				HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
 				HAL_Delay(rxData[0]);
 			}
-			data_check = 0;
 			HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
+			data_check = 0;
 		}
   }
 }
@@ -136,15 +136,15 @@ static void MX_CAN1_Init(void)
 	CAN_FilterTypeDef can1_filter;
 	
 	can1_filter.FilterActivation = ENABLE;
-	can1_filter.FilterBank = 10;
+	can1_filter.FilterBank = 0;
 	can1_filter.FilterFIFOAssignment = CAN_RX_FIFO0;
 	can1_filter.FilterIdHigh = 0x446<<5;
 	can1_filter.FilterIdLow = 0x0000;
-	can1_filter.FilterMaskIdHigh = 0x0446<<5;
+	can1_filter.FilterMaskIdHigh = 0x446<<5;
 	can1_filter.FilterMaskIdLow = 0x0000;
 	can1_filter.FilterMode = CAN_FILTERMODE_IDMASK;
 	can1_filter.FilterScale = CAN_FILTERSCALE_32BIT;
-	can1_filter.SlaveStartFilterBank = 0;
+	//.SlaveStartFilterBank = 0;
 
 	HAL_CAN_ConfigFilter(&hcan1, &can1_filter);
   /* USER CODE END CAN1_Init 2 */
