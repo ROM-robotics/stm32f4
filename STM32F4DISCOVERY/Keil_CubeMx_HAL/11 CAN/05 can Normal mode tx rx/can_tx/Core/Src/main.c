@@ -9,7 +9,6 @@ static void MX_GPIO_Init(void);
 static void MX_CAN1_Init(void);
 static void MX_TIM9_Init(void);
 
-//---------------------------------------------- rom add 
 CAN_TxHeaderTypeDef txHeader;
 CAN_RxHeaderTypeDef rxHeader;
 
@@ -54,7 +53,7 @@ int main(void)
 	HAL_CAN_Start(&hcan1);
 	HAL_CAN_ActivateNotification(&hcan1,CAN_IT_RX_FIFO0_MSG_PENDING);
 	
-	txHeader.DLC = 2; // data length
+	txHeader.DLC = 1; // data length
 	txHeader.IDE = CAN_ID_STD;
 	txHeader.RTR = CAN_RTR_DATA;
 	txHeader.StdId = 0x446; // ID
@@ -121,14 +120,6 @@ void SystemClock_Config(void)
 
 static void MX_CAN1_Init(void)
 {
-
-  /* USER CODE BEGIN CAN1_Init 0 */
-
-  /* USER CODE END CAN1_Init 0 */
-
-  /* USER CODE BEGIN CAN1_Init 1 */
-
-  /* USER CODE END CAN1_Init 1 */
   hcan1.Instance = CAN1;
   hcan1.Init.Prescaler = 3;
   hcan1.Init.Mode = CAN_MODE_NORMAL;
@@ -152,9 +143,9 @@ static void MX_CAN1_Init(void)
 	can1_filter.FilterActivation = ENABLE;
 	can1_filter.FilterBank = 0;
 	can1_filter.FilterFIFOAssignment = CAN_RX_FIFO0;
-	can1_filter.FilterIdHigh = 0x103<<5;
+	can1_filter.FilterIdHigh = 0x0000;
 	can1_filter.FilterIdLow = 0x0000;
-	can1_filter.FilterMaskIdHigh = 0x103<<5;
+	can1_filter.FilterMaskIdHigh = 0x0000;
 	can1_filter.FilterMaskIdLow = 0x0000;
 	can1_filter.FilterMode = CAN_FILTERMODE_IDMASK;
 	can1_filter.FilterScale = CAN_FILTERSCALE_32BIT;

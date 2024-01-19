@@ -20,7 +20,7 @@ int data_check = 0;
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
 	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData);
-	if(rxHeader.DLC==2)
+	if( rxHeader.DLC==1 )
 	{
 		if(rxData[0] == 1) 
 		{ 
@@ -28,19 +28,29 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		}
 		else if(rxData[0] == 2)
 		{
-			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 & GPIO_PIN_13, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
 		}
 		else if(rxData[0] == 3)
 		{
-			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12&GPIO_PIN_13&GPIO_PIN_14, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
 		}
 		else if(rxData[0] == 4) 
 		{ 
-			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12&GPIO_PIN_13&GPIO_PIN_14&GPIO_PIN_15, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
 		}
 		else if(rxData[0] == 5) 
 		{
-			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12&GPIO_PIN_13&GPIO_PIN_14&GPIO_PIN_15, GPIO_PIN_RESET);  
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+			
 		}
 	}
 }
@@ -59,7 +69,7 @@ int main(void)
 	HAL_CAN_Start(&hcan1);
 	HAL_CAN_ActivateNotification(&hcan1,CAN_IT_RX_FIFO0_MSG_PENDING);
 	
-	txHeader.DLC = 2; // data length
+	txHeader.DLC = 1; // data length
 	txHeader.IDE = CAN_ID_STD;
 	txHeader.RTR = CAN_RTR_DATA;
 	txHeader.StdId = 0x103; // ID
