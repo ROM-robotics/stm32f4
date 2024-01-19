@@ -22,7 +22,26 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData);
 	if(rxHeader.DLC==2)
 	{
-		data_check = 1;
+		if(rxData[0] == 1) 
+		{ 
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+		}
+		else if(rxData[0] == 2)
+		{
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 & GPIO_PIN_13, GPIO_PIN_SET);
+		}
+		else if(rxData[0] == 3)
+		{
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12&GPIO_PIN_13&GPIO_PIN_14, GPIO_PIN_SET);
+		}
+		else if(rxData[0] == 4) 
+		{ 
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12&GPIO_PIN_13&GPIO_PIN_14&GPIO_PIN_15, GPIO_PIN_SET);
+		}
+		else if(rxData[0] == 5) 
+		{
+			HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12&GPIO_PIN_13&GPIO_PIN_14&GPIO_PIN_15, GPIO_PIN_RESET);  
+		}
 	}
 }
 //----------------------------------------------
@@ -52,13 +71,9 @@ int main(void)
   {
 		if(data_check) 
 		{
-			for(int i=0;i<rxData[1];i++)
-			{
-				HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
-				HAL_Delay(rxData[0]);
-			}
-			HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
-			data_check = 0;
+
+			//HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
+			//data_check = 0;
 		}
   }
 }
