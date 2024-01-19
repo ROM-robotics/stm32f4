@@ -17,26 +17,27 @@ uint8_t txData[8];
 uint8_t rxData[8];
 
 uint32_t txMailbox;
-int data_check = 0;
+int data_check = 1;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+	
+	if(data_check > 5 ) { data_check = 1; }
+	
+	
 	if( GPIO_Pin == GPIO_PIN_0 )
 	{
-		txData[0] = 100; //ms
-		txData[1] = 10;  // loop repeat
+		txData[0] = data_check;
 		
 			HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
 	}
+	data_check ++;
 }
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData);
-	if(rxHeader.DLC==2)
-	{
-		data_check = 1;
-	}
+	//HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData);
+	
 } 
 //---------------------------------------------- rom end
 int main(void)
@@ -59,7 +60,7 @@ int main(void)
 	txHeader.StdId = 0x446; // ID
 	
   while (1)
-  {
+  {/*
 		if(data_check) 
 		{
 			for(int i=0;i<rxData[1];i++)
@@ -69,7 +70,7 @@ int main(void)
 			}
 			data_check = 0;
 		}
-		//---------------------------------------------------------------
+		*/
   }
   
 	
