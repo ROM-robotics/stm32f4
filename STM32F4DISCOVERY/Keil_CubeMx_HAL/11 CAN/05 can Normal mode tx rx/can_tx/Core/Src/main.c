@@ -18,19 +18,19 @@ uint8_t rxData[8];
 uint32_t txMailbox;
 int data_check = 1;
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+void ___ROM_EXTI0_IRQHandler(void)
 {
+	//if( __HAL_GPIO_EXTI_GET_FLAG(GPIO_PIN_0) != RESET )
 	
-	if(data_check > 5 ) { data_check = 1; }
-	
-	
-	if( GPIO_Pin == GPIO_PIN_0 )
-	{
-		txData[0] = data_check;
+		if(data_check > 5 ) { data_check = 1; }
 		
-			HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
-	}
-	data_check ++;
+		txData[0] = data_check++;
+		
+		HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
+		
+		__HAL_GPIO_EXTI_CLEAR_FLAG(GPIO_PIN_0);
+		
+		
 }
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)

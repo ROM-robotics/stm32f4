@@ -1,6 +1,6 @@
 #include "main.h"
 #include "stm32f4xx_it.h"
-
+#include "stm32f4xx.h"
 
 extern CAN_HandleTypeDef hcan1;
 extern TIM_HandleTypeDef htim9;
@@ -118,7 +118,8 @@ void SysTick_Handler(void)
 
 void EXTI0_IRQHandler(void)
 {
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+	___ROM_EXTI0_IRQHandler();
+  //HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);__HAL_GPIO_EXTI_GET_FLAG();
 }
 
 

@@ -32,6 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+void ___ROM_EXTI0_IRQHandler(void);
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
