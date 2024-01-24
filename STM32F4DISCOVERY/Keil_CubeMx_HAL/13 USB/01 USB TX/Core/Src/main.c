@@ -99,7 +99,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		CDC_Transmit_FS("Hello\r\n", 7);
+		HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
