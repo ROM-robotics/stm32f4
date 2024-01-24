@@ -409,9 +409,24 @@
               <FilePath>../Core/Src/stm32f4xx_hal_msp.c</FilePath>
             </File>
             <File>
-              <FileName>MY_LIS3DSH.c</FileName>
+              <FileName>stm32f4_discovery.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MY_LIS3DSH.c</FilePath>
+              <FilePath>.\stm32f4_discovery.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4_discovery_accelerometer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f4_discovery_accelerometer.c</FilePath>
+            </File>
+            <File>
+              <FileName>lis3dsh.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lis3dsh.c</FilePath>
+            </File>
+            <File>
+              <FileName>lis302dl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lis302dl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -419,9 +434,14 @@
           <GroupName>Drivers/STM32F4xx_HAL_Driver</GroupName>
           <Files>
             <File>
-              <FileName>stm32f4xx_hal_spi.c</FileName>
+              <FileName>stm32f4xx_hal_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c</FilePath>
+              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_hal_rcc.c</FileName>
@@ -487,6 +507,11 @@
               <FileName>stm32f4xx_hal_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_hal_tim.c</FileName>
