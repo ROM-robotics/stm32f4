@@ -57,10 +57,9 @@
 /* External variables --------------------------------------------------------*/
 extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
 extern TIM_HandleTypeDef htim9;
+extern void mpu_callback(void);
 /* USER CODE BEGIN EV */
-extern void USB_TX_UINT8_PTR(uint8_t *buf, uint32_t len);
-extern int16_t accel_data;
-extern void mpu9250_read_accel(void);
+
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -207,17 +206,16 @@ void SysTick_Handler(void)
 void TIM1_BRK_TIM9_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 0 */
-	
-	char *tmp="hello\r\n";
 	if( TIM9->SR & TIM_SR_UIF )
 	{
-		mpu9250_read_accel();
-		USB_TX_UINT8_PTR((uint8_t *)tmp, sizeof(tmp));
+		mpu_callback();
+		//char *usb_tx;
+		//sprintf(usb_tx, "%d\r\n", accel_data );
+		//CDC_Transmit_FS( (uint8_t*)usb_tx, strlen(usb_tx) );
 	}
 	TIM9->SR &= ~ TIM_SR_UIF;
-	
   /* USER CODE END TIM1_BRK_TIM9_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim9);
+  //HAL_TIM_IRQHandler(&htim9);
   /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 1 */
 
   /* USER CODE END TIM1_BRK_TIM9_IRQn 1 */
