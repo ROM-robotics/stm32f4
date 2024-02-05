@@ -2,7 +2,7 @@
 extern SPI_HandleTypeDef hspi2;
 
 int16_t accel_data;
-uint8_t imu_data[14];
+
 
 uint8_t mpu9250_init(void)
 {
@@ -54,8 +54,9 @@ void mpu9250_read_reg(uint8_t reg, uint8_t *data, uint8_t len)
 }
 
 
-void mpu9250_read_accel(uint8_t *data)
+void mpu9250_read_accel()
 {
-	mpu9250_read_reg(ACCEL_XOUT_H_REG, data, sizeof(imu_data));
+	uint8_t imu_data[2];
+	mpu9250_read_reg(ACCEL_XOUT_H_REG, imu_data, sizeof(imu_data));
 	accel_data = ((int16_t)imu_data[0]<<8) + imu_data[1];
 }

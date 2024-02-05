@@ -16,5 +16,5 @@ uint8_t mpu9250_init(void);
 void mpu9250_write_reg(uint8_t reg, uint8_t data);
 
 void mpu9250_read_reg(uint8_t reg, uint8_t *data, uint8_t len);
-void mpu9250_read_accel(uint8_t *data);
+void mpu9250_read_accel(void);
 
