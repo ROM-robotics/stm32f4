@@ -112,6 +112,7 @@ int main(void)
 	// Calibrate the IMU
   sprintf((char *)usb_tx_buf, "Calibrating ....\r\n");
 	CDC_Transmit_FS( (uint8_t*)usb_tx_buf, strlen((char *)usb_tx_buf) );
+	
   MPU_calibrateGyro(&hspi2, &mpu9250, 1500);
 	
 	HAL_TIM_Base_Start_IT(&htim9);
