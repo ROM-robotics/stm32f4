@@ -60,8 +60,8 @@ all: main-build
 main-build: 04\ mpu\ 9250\ custom\ lib.elf secondary-outputs
 
 # Tool invocations
-04\ mpu\ 9250\ custom\ lib.elf 04\ mpu\ 9250\ custom\ lib.map: $(OBJS) $(USER_OBJS) C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\04\ mpu\ 9250\ custom\ lib\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "04 mpu 9250 custom lib.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\04 mpu 9250 custom lib\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="04 mpu 9250 custom lib.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+04\ mpu\ 9250\ custom\ lib.elf 04\ mpu\ 9250\ custom\ lib.map: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\Git\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\04\ mpu\ 9250\ custom\ lib\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "04 mpu 9250 custom lib.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\Git\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\04 mpu 9250 custom lib\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="04 mpu 9250 custom lib.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

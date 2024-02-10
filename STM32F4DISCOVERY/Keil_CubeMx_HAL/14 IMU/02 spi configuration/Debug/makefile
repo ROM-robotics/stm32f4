@@ -60,8 +60,8 @@ all: main-build
 main-build: 02\ spi\ configuration.elf secondary-outputs
 
 # Tool invocations
-02\ spi\ configuration.elf 02\ spi\ configuration.map: $(OBJS) $(USER_OBJS) C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\02\ spi\ configuration\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "02 spi configuration.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\02 spi configuration\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="02 spi configuration.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+02\ spi\ configuration.elf 02\ spi\ configuration.map: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\Git\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\02\ spi\ configuration\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "02 spi configuration.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\Git\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\02 spi configuration\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="02 spi configuration.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

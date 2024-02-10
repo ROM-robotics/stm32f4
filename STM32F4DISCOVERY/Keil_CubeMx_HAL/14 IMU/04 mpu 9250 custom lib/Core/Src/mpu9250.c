@@ -1,4 +1,5 @@
 #include "mpu9250.h"
+#include <stdio.h>
 /*
  *
  *  Created on: Feb 10, 2024

@@ -64,8 +64,8 @@ all: main-build
 main-build: printf.elf secondary-outputs
 
 # Tool invocations
-printf.elf printf.map: $(OBJS) $(USER_OBJS) C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\01\ printf\printf\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "printf.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\01 printf\printf\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="printf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+printf.elf printf.map: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\Git\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\01\ printf\printf\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "printf.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\Git\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\01 printf\printf\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="printf.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

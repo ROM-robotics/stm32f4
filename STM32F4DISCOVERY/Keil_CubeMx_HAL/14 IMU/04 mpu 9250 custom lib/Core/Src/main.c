@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "mpu9250.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,10 +95,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //mpu_read_sensor(&imu_data);
-	  HAL_Delay(1000);
+	 mpu_read_sensor(&imu_data);
+	 HAL_Delay(1000);
     /* USER CODE END WHILE */
-	  printf("Hello rom dynamics");
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
