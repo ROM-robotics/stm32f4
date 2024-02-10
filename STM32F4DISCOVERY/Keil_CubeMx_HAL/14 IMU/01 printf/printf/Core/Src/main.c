@@ -23,7 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
-#include "MPU9250.h"
+//#include "MPU9250.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,7 +67,7 @@ void MX_USB_HOST_Process(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int my_data = 0;
-MPU9250_t mpu;
+//MPU9250_t mpu;
 /* USER CODE END 0 */
 
 /**
@@ -114,7 +114,7 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    //printf("Hello rom dynamics\n");
+    printf("Hello rom dynamics\n");
     //HAL_Delay(1000);
     my_data++;
     if(my_data == 999) { my_data = 0; }

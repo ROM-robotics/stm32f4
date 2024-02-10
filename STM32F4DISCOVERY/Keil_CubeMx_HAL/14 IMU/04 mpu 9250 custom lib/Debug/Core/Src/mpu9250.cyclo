@@ -1,0 +1,6 @@
+../Core/Src/mpu9250.c:9:13:activate_spi2_mpu	1
+../Core/Src/mpu9250.c:14:13:deactivate_spi2_mpu	1
+../Core/Src/mpu9250.c:19:6:mpu_init	1
+../Core/Src/mpu9250.c:31:6:mpu_write_reg	1
+../Core/Src/mpu9250.c:39:6:mpu_read_reg	1
+../Core/Src/mpu9250.c:48:6:mpu_read_sensor	1
