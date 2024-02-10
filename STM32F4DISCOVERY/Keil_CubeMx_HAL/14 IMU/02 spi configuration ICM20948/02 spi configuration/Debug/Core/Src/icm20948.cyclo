@@ -1,0 +1,7 @@
+../Core/Src/icm20948.c:6:13:activate_imu	1
+../Core/Src/icm20948.c:11:13:deactivate_imu	1
+../Core/Src/icm20948.c:16:13:sel_user_bank	1
+../Core/Src/icm20948.c:25:6:icm_20948_read_reg	1
+../Core/Src/icm20948.c:35:6:icm_20948_write_reg	1
+../Core/Src/icm20948.c:43:6:icm_20948_init	1
+../Core/Src/icm20948.c:73:9:icm_20948_read_data	1
