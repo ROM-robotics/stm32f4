@@ -56,6 +56,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+mpu_data imu_data;
 /* USER CODE END 0 */
 
 /**
@@ -88,15 +89,14 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  void mpu_init();
   /* USER CODE END 2 */
-  mpu_data imu_data;
+  mpu_init();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	 mpu_read_sensor(&imu_data);
-	 HAL_Delay(1000);
+	 HAL_Delay(3000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

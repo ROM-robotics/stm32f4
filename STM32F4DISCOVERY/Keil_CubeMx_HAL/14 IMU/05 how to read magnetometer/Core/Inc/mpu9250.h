@@ -28,29 +28,33 @@
 
 #define PWR_MGTM1_PLL_EXSLP		0x01
 
-// I2C0 registers
+// Registers related to I2C Master
 #define USR_CTRL_REG			106
 #define I2C_MSTR_CTRL_REG		36
 
-#define USR_CTRL_REG_I2CEN		32
-#define I2C_MSTR_CTRL_400		13
+#define USR_CTRL_REG_I2CEN		0x20
+#define I2C_MSTR_CTRL_400		0x0D
 
 #define I2C_SLV0_ADDR_REG		37
 #define I2C_SLV0_REG_REG		38
 #define I2C_SLV0_CTRL_REG		39
 #define I2C_SLV0_DATA_REG		99
 
+#define I2C_SLV0_CTRL_EN		0x80
+
+// Magnetometer
 #define AK8963_ADDRESS			0x0C
+#define AK8963_CTRL_REG			0x0A
+#define AK8963_SEN_ONSET_REG	0x10
+#define AK8963_DATA_ONSET_REG	0x03
+
+// Magnetometer operation mode
+#define AK8963_PWR_DWN			0x00
+#define AK8963_FUSE_ROM			0x0F
+#define AK8963_CONT_MEAS2		0x16
 
 #define EXT_SENS_DATA_00_REG 	23
 
-#define AK8963_CTRL_REG			0x0A
-#define AK8963_PWR_DWN			0x00
-#define AK8963_FUSE_ROM			0x0F
-
-#define AK8963_SEN_ONSET_REG	0x10
-
-#define AK8963_CONT_MEAS2		0x16
 typedef struct{
 	int16_t x_accel;
 	int16_t y_accel;
