@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "MPU9250.h"
+#include "mpu9250.h"
 #include "stdio.h"
 /* USER CODE END Includes */
 
@@ -45,18 +45,17 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void mpu_callback(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-MPU9250_t mpu9250;
+
 /* USER CODE END 0 */
 
 /**
@@ -66,12 +65,7 @@ MPU9250_t mpu9250;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	mpu9250.settings.gFullScaleRange = GFSR_500DPS;
-	mpu9250.settings.aFullScaleRange = AFSR_4G;
-	mpu9250.settings.CS_PIN = GPIO_PIN_0;
-	mpu9250.settings.CS_PORT= GPIOC;
-	//mpu9250.attitude.tau = 0.98;
-	//mpu9250.attitude.dt = 0.004;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,21 +88,16 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  if (MPU_begin(&hspi2, &mpu9250) != 1)
-    {
-	  printf("mpu initialization Error!\n");
-      while (1){}
-    }
+  void mpu_init();
   /* USER CODE END 2 */
-
+  mpu_data imu_data;
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	 mpu_read_sensor(&imu_data);
+	 HAL_Delay(1000);
     /* USER CODE END WHILE */
-	  //printf("Hello testing\n");
-	  //HAL_Delay(1000);
-	  mpu_callback();
 
     /* USER CODE BEGIN 3 */
   }
@@ -168,32 +157,6 @@ int _write(int file, char *ptr, int len)
 		ITM_SendChar(*ptr++);
 	return len;
 }
-
-void mpu_callback(void)
-{
-	MPU_calcAttitude(&hspi2, &mpu9250);
-    //int16_t roll = roundf(10 * mpu9250.attitude.r);
-    //uint8_t rollDecimal = abs(roll % 10);
-    //int16_t pitch = roundf(10 * mpu9250.attitude.p);
-    //uint8_t pitchDecimal = abs(pitch % 10);
-    //int16_t yaw = roundf(10 * mpu9250.attitude.y);
-    //uint8_t yawDecimal = abs(yaw % 10);
-
-    float ax = mpu9250.sensorData.ax;
-    float ay = mpu9250.sensorData.ay;
-    float az = mpu9250.sensorData.az;
-    float gx = mpu9250.sensorData.gx;
-    float gy = mpu9250.sensorData.gy;
-    float gz = mpu9250.sensorData.gz;
-
-    printf("Accelero x: %.5f\n",ax);
-   	printf("Accelero y: %.5f\n",ay);
-   	printf("Accelero z: %.5f\n",az);
-   	printf("Gyro x: %.5f\n",gx);
-   	printf("Gyro y: %.5f\n",gy);
-   	printf("Gyro z: %.5f\n",gz);
-}
-
 /* USER CODE END 4 */
 
 /**
