@@ -90,8 +90,9 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  /* USER CODE END 2 */
   mpu_init();
+  /* USER CODE END 2 */
+  
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -101,6 +102,11 @@ int main(void)
 	 sum_gyro_x += imu_data.x_gyro;
 	 sum_gyro_y += imu_data.y_gyro;
 	 sum_gyro_z += imu_data.z_gyro;
+
+	 printf("Accelero : %d, %d, and %d \n", imu_data.x_accel, imu_data.y_accel, imu_data.z_accel);
+	 printf("Gyro : %d, %d, and %d \n", imu_data.x_gyro, imu_data.y_gyro, imu_data.z_gyro);
+	 printf("Magneto : %d, %d, and %d \n", imu_data.x_mag, imu_data.y_mag, imu_data.z_mag);
+
 
     /* USER CODE END WHILE */
 
