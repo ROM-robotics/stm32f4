@@ -1,0 +1,9 @@
+../Core/Src/mpu9250.c:14:13:activate_spi2_mpu	8	static
+../Core/Src/mpu9250.c:19:13:deactivate_spi2_mpu	8	static
+../Core/Src/mpu9250.c:25:6:ak8963_write_reg	16	static
+../Core/Src/mpu9250.c:33:6:ak8963_read_reg	16	static
+../Core/Src/mpu9250.c:41:6:mpu_init	16	static
+../Core/Src/mpu9250.c:74:6:mpu_write_reg	16	static
+../Core/Src/mpu9250.c:82:6:mpu_read_reg	24	static
+../Core/Src/mpu9250.c:91:6:mpu_read_sensor	40	static
+../Core/Src/mpu9250.c:118:13:remove_gyro_bias	32	static
