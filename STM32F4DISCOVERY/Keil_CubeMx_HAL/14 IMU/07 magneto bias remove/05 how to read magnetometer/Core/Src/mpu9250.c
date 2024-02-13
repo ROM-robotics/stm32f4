@@ -106,9 +106,9 @@ void mpu_read_sensor(mpu_data *imu_data)
 	imu_data->y_gyro = (((int16_t)data[10]<<8) + data[11]) + y_gyro_bias;
 	imu_data->z_gyro = (((int16_t)data[12]<<8) + data[13]) + z_gyro_bias;
 
-	imu_data->x_mag = ((int16_t)data[15]<<8) + data[14];
-	imu_data->y_mag = ((int16_t)data[17]<<8) + data[16];
-	imu_data->z_mag = ((int16_t)data[19]<<8) + data[18];
+	imu_data->x_mag = ( ((int16_t)data[15]<<8) + data[14] ) - MAG_X_BIAS;
+	imu_data->y_mag = ( ((int16_t)data[17]<<8) + data[16] ) - MAG_Y_BIAS;
+	imu_data->z_mag = ( ((int16_t)data[19]<<8) + data[18] ) - MAG_Z_BIAS;
 
 	//printf("Accelero : %d, %d, and %d \n", imu_data->x_accel, imu_data->y_accel, imu_data->z_accel);
 	//printf("Gyro : %d, %d, and %d \n", imu_data->x_gyro, imu_data->y_gyro, imu_data->z_gyro);

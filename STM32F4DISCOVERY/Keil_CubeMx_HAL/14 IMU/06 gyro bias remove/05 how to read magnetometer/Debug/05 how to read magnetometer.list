@@ -606,9 +606,9 @@ int main(void)
   MX_SPI2_Init();
  8000688:	f000 fae4 	bl	8000c54 <MX_SPI2_Init>
   /* USER CODE BEGIN 2 */
-  /* USER CODE END 2 */
   mpu_init();
  800068c:	f000 f944 	bl	8000918 <mpu_init>
+  
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

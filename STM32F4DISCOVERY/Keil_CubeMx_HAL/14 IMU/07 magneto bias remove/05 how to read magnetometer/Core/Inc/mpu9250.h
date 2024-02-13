@@ -62,6 +62,10 @@
 #define ZG_OFFSET_H				0x17
 #define ZG_OFFSET_L				0x18
 
+#define MAG_X_BIAS				293
+#define MAG_Y_BIAS				0
+#define MAG_Z_BIAS				-316
+
 typedef struct{
 	int16_t x_accel;
 	int16_t y_accel;

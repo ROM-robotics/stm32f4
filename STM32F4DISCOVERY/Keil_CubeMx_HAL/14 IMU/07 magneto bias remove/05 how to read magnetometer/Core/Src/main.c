@@ -59,6 +59,17 @@ void mpu_callback(void);
 /* USER CODE BEGIN 0 */
 
 mpu_data imu_data;
+
+int16_t x_accel;
+int16_t y_accel;
+int16_t z_accel;
+int16_t x_gyro;
+int16_t y_gyro;
+int16_t z_gyro;
+int16_t x_mag;
+int16_t y_mag;
+int16_t z_mag;
+
 /* USER CODE END 0 */
 
 /**
@@ -100,21 +111,6 @@ int main(void)
   while (1)
   {
 
-
-
-		//sum_gyro_x += imu_data.x_gyro;
-		//sum_gyro_y += imu_data.y_gyro;
-		//sum_gyro_z += imu_data.z_gyro;
-
-
-	 //printf("Accelero : %d, %d, and %d \n", imu_data.x_accel, imu_data.y_accel, imu_data.z_accel);
-	 //printf("Gyro : %d, %d, and %d \n", imu_data.x_gyro, imu_data.y_gyro, imu_data.z_gyro);
-	// printf("Magneto : %d, %d, and %d \n", imu_data.x_mag, imu_data.y_mag, imu_data.z_mag);
-
-
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -178,9 +174,17 @@ int _write(int file, char *ptr, int len)
 void mpu_callback(void)
 {
 	mpu_read_sensor(&imu_data);
-	sum_gyro_x += imu_data.x_gyro;
-	sum_gyro_y += imu_data.y_gyro;
-	sum_gyro_z += imu_data.z_gyro;
+	/*
+	x_gyro = imu_data.x_gyro;
+	y_gyro = imu_data.y_gyro;
+	z_gyro = imu_data.z_gyro;
+	sum_gyro_x += x_gyro;
+	sum_gyro_y += y_gyro;
+	sum_gyro_z += z_gyro;
+	*/
+	x_mag = imu_data.x_mag;
+	y_mag = imu_data.y_mag;
+	z_mag = imu_data.z_mag;
 }
 
 /* USER CODE END 4 */
