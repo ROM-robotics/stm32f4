@@ -1,0 +1,29 @@
+magnetometer ကို plot လုပ်ဖို့ global var အဖြစ်  int16_t mag_x, mag_y, mag_z;
+ပြီး ရင် ဖန်ရှင်ထဲမှာ assign လုပ်ပါ
+mag_x = imu_data.x_mag;
+mag_y = imu_data.y_mag;
+mag_z = imu_data.z_mag;
+
+ပြီးရင် debug mode ထဲမှာ swv data trace timeline graph ကို ကြည့်ကြမှာ ဖြစ်ပါတယ်။ သူ့ရဲ့ tools sign ထဲမှာ mag_x,y,z တို့ထည့်ပါ။
+
+magneto bias define လုပ်ဖို့ header ဖိုင်ထဲမှာ MAG_X_BIAS, Y, Z တို့အတွက် MACRO ရေးပါ။ 
+ပြီးရင် CODE ဖိုင်ထဲမှာ MAGNETO  အတွက် DATA READING လုပ်ရာမှာ အသီးသီး နှုတ်လိုက်ပါ။ 
+
+ဒါဆို magnetometer ရဲ့ data တွေကို တွေ့ ရမယ်။ 
+ပြီး ရင် z axis ကို HORIZONTAL အတိုင်း ထားပြီး rotate လုပ်လိုက်ပြီး ခန ရပ်လိုက်မယ်။ ဒါဆို x ရဲ့ min ကို ရမှာဖြစ်သလို max ကို လဲရမယ်။ Y လည်း အဲ့အတိုင်းဘဲ။ min, max တို့ကို မှတ်ထားရမှာဖြစ်ပါတယ်။
+X MAX နဲ့ X MIN ကို ပေါင်းပြီး 2 နဲ့ စားပါ။
+Y MAX နဲ့ Y MIN ကို ပေါင်းပြီး ၂ နဲ့ စားပါ။ MACRO မှာ DEFINE လုပ်ပါ။
+
+ပြီးရင် X AXIS ကို HORIZONTAL အတိုင်းထားပြီး ROTATE လုပ်ပါ။
+ပြီး ရင် ခနရပ်ပြီး Z MIN နဲ့ ZMAX ကို ပေါင်း ပြိး 2 နဲ့ စားပါ။ MACRO မှာ DEFINE လုပ်ပါ။ 
+
+ပြီးရင် X AXIS ROTATE ထပ်လုပ်ပြီး MAG_Z ရဲ့ PLOT တန်ဖို့ MIN MAX ကို စစ်ဆေးပါ။
+တန်ဖိုးတွေ က မျှနေရပါမယ်။
+
+နောက်တခါ Z AXIS ကို HORIZONTAL အတိုင်းထားပြီး ROTATE လုပ်ကာ X,Y ရဲ့ MIN , MAX တို့ကို မျှ / မမျှ စစ်ဆေးပါ။ အနဲငယ်လိုအပ်ပါက BIAS တန်ဖိုးကို လိုတိုးပိုလျော့ လုပ်ပါ။
+အခုဆိုရင် MAGNETOMETER ကို BIAS ဖယ်ပြီးပါပြီ။ နောက် VIDEO မှာတော့ DATA တွေကို NORMALIZING လုပ်ရအောင်ပါ။
+
+CHAT GPT ကြည့် ပါ။
+_______________________________________________________________________________________________
+
+
