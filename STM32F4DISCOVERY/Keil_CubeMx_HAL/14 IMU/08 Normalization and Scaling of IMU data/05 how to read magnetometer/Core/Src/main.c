@@ -27,6 +27,7 @@
 #include "mpu9250.h"
 #include "stdio.h"
 #include "arm_math.h"
+#include "imu_data.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +49,7 @@
 
 /* USER CODE BEGIN PV */
 int sum_gyro_x, sum_gyro_y, sum_gyro_z;
+imu_norm imu_norm_var;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -185,9 +187,12 @@ void mpu_callback(void)
 	sum_gyro_y += y_gyro;
 	sum_gyro_z += z_gyro;
 	*/
+	/*
 	x_mag = imu_data.x_mag;
 	y_mag = imu_data.y_mag;
 	z_mag = imu_data.z_mag;
+	*/
+	sensor2imu(imu_data, &imu_norm_var);
 }
 
 /* USER CODE END 4 */

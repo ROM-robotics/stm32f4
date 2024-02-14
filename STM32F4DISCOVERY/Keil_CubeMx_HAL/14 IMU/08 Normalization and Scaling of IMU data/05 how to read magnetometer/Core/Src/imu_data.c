@@ -30,15 +30,15 @@ void sensor2imu(mpu_data icm_data, imu_norm* imu)
 		printf("error sqrt! %d \n", arm_status_temp);
 		while(1);
 	}
-	imu->ax = -((float32_t)icm_data.x_accel) / norm_acc;
-	imu->ay = ((float32_t)icm_data.y_accel) / norm_acc;
-	imu->az = ((float32_t)icm_data.z_accel) / norm_acc;
+	imu->ax =  ((float32_t)icm_data.y_accel) / norm_acc;
+	imu->ay =  ((float32_t)icm_data.x_accel) / norm_acc;
+	imu->az = -((float32_t)icm_data.z_accel) / norm_acc;
 
-	imu->gx = ((float32_t)icm_data.x_gyro) * GYRO_SCALE;
-	imu->gy = -((float32_t)icm_data.y_gyro) * GYRO_SCALE;
+	imu->gx =  ((float32_t)icm_data.y_gyro) * GYRO_SCALE;
+	imu->gy =  ((float32_t)icm_data.x_gyro) * GYRO_SCALE;
 	imu->gz = -((float32_t)icm_data.z_gyro) * GYRO_SCALE;
 
-	imu->mx = ((float32_t)icm_data.x_mag) / norm_mag;
-	imu->my = ((float32_t)icm_data.y_mag) / norm_mag;
-	imu->mz = ((float32_t)icm_data.z_mag) / norm_mag;
+	imu->mx =  ((float32_t)icm_data.x_mag) / norm_mag;
+	imu->my =  ((float32_t)icm_data.y_mag) / norm_mag;
+	imu->mz =  ((float32_t)icm_data.z_mag) / norm_mag;
 }
