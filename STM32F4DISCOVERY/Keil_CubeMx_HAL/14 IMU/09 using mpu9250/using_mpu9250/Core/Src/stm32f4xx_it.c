@@ -205,12 +205,12 @@ void SysTick_Handler(void)
 void TIM1_BRK_TIM9_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 0 */
-	//if(TIM9->SR & TIM_SR_UIF)
-	//{
-		//
+	if(TIM9->SR & TIM_SR_UIF)
+	{
+		mpu_flag = 1;
 
-	//}
-	mpu_flag = 1;
+	}
+	TIM9->SR &= ~TIM_SR_UIF;
   /* USER CODE END TIM1_BRK_TIM9_IRQn 0 */
   HAL_TIM_IRQHandler(&htim9);
   /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 1 */

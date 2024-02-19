@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "MPU9250.h"
 #include "stdio.h"
+#include "arm_math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,12 +53,12 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void mpu_callback(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-MPU9250_t mpu;
+MPU9250_t mpu={0};
 float roll = 0; float pitch = 0; float yaw = 0;
 int mpu_flag=0;
 /* USER CODE END 0 */
@@ -171,10 +172,12 @@ int _write(int file, char *ptr, int len)
 void mpu_callback(void)
 {
 	MPU_calcAttitude(&hspi2, &mpu);
-	roll = mpu.attitude.r;
-	pitch = mpu.attitude.p;
-	yaw = mpu.attitude.y;
-	//printf("Yaw : f");
+	//roll = mpu.attitude.r;
+	//pitch = mpu.attitude.p;
+	//yaw = mpu.attitude.y;
+	print_accelero(&mpu);
+	print_gyro(&mpu);
+	print_magneto(&mpu);
 }
 /* USER CODE END 4 */
 
