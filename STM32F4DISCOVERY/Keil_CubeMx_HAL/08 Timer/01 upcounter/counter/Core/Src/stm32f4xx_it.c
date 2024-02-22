@@ -26,7 +26,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
-
+extern void my_callback();
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -204,11 +204,15 @@ void SysTick_Handler(void)
 void TIM1_BRK_TIM9_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 0 */
-
+	
   /* USER CODE END TIM1_BRK_TIM9_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim9);
+  //HAL_TIM_IRQHandler(&htim9);
   /* USER CODE BEGIN TIM1_BRK_TIM9_IRQn 1 */
-
+	if(TIM9->SR & TIM_SR_UIF)
+	{
+		my_callback();
+	}
+	TIM9->SR &= ~TIM_SR_UIF;
   /* USER CODE END TIM1_BRK_TIM9_IRQn 1 */
 }
 
