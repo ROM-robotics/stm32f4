@@ -1,0 +1,17 @@
+../Core/Src/MPU9250.c:15:9:MPU_begin	40	static
+../Core/Src/MPU9250.c:88:6:MPU_REG_WRITE	24	static
+../Core/Src/MPU9250.c:102:6:MPU_REG_READ	32	static
+../Core/Src/MPU9250.c:111:6:ak8963_write_reg	32	static
+../Core/Src/MPU9250.c:123:6:ak8963_read_reg	40	static
+../Core/Src/MPU9250.c:141:6:MPU_CS	16	static
+../Core/Src/MPU9250.c:150:6:MPU_writeAccFullScaleRange	32	static
+../Core/Src/MPU9250.c:191:6:MPU_writeGyroFullScaleRange	32	static
+../Core/Src/MPU9250.c:231:6:MPU_readRawData	48	static
+../Core/Src/MPU9250.c:257:6:MPU_calibrateGyro	40	static
+../Core/Src/MPU9250.c:289:6:MPU_readProcessedData	48	static
+../Core/Src/MPU9250.c:347:6:MPU_calcAttitude	32	static
+../Core/Src/MPU9250.c:364:6:acc_mag2euler	56	static
+../Core/Src/MPU9250.c:386:6:acc_mag_gyro2euler	32	static
+../Core/Src/MPU9250.c:440:6:print_accelero	16	static
+../Core/Src/MPU9250.c:444:6:print_gyro	16	static
+../Core/Src/MPU9250.c:448:6:print_magneto	16	static
