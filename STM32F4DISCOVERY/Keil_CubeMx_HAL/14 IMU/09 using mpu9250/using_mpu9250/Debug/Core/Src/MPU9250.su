@@ -6,7 +6,7 @@
 ../Core/Src/MPU9250.c:141:6:MPU_CS	16	static
 ../Core/Src/MPU9250.c:150:6:MPU_writeAccFullScaleRange	32	static
 ../Core/Src/MPU9250.c:191:6:MPU_writeGyroFullScaleRange	32	static
-../Core/Src/MPU9250.c:231:6:MPU_readRawData	48	static
+../Core/Src/MPU9250.c:231:6:MPU_readRawData	40	static
 ../Core/Src/MPU9250.c:257:6:MPU_calibrateGyro	40	static
 ../Core/Src/MPU9250.c:289:6:MPU_readProcessedData	48	static
 ../Core/Src/MPU9250.c:347:6:MPU_calcAttitude	32	static

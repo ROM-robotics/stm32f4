@@ -1,5 +1,6 @@
 #include "mpu9250.h"
 #include "stdio.h"
+#include "arm_math.h"
 /*
  *
  *  Created on: Feb 10, 2024
@@ -102,9 +103,9 @@ void mpu_read_sensor(mpu_data *imu_data)
 	imu_data->y_accel = ((int16_t)data[2]<<8) + data[3];
 	imu_data->z_accel = ((int16_t)data[4]<<8) + data[5];
 
-	imu_data->x_gyro = (((int16_t)data[8]<<8) + data[9])   + x_gyro_bias;
-	imu_data->y_gyro = (((int16_t)data[10]<<8) + data[11]) + y_gyro_bias;
-	imu_data->z_gyro = (((int16_t)data[12]<<8) + data[13]) + z_gyro_bias;
+	imu_data->x_gyro = (((int16_t)data[8]<<8) + data[9])  - x_gyro_bias;
+	imu_data->y_gyro = (((int16_t)data[10]<<8) + data[11])- y_gyro_bias;
+	imu_data->z_gyro = (((int16_t)data[12]<<8) + data[13])- z_gyro_bias;
 
 	imu_data->x_mag = ((int16_t)data[15]<<8) + data[14];
 	imu_data->y_mag = ((int16_t)data[17]<<8) + data[16];
@@ -113,9 +114,29 @@ void mpu_read_sensor(mpu_data *imu_data)
 	//printf("Accelero : %d, %d, and %d \n", imu_data->x_accel, imu_data->y_accel, imu_data->z_accel);
 	//printf("Gyro : %d, %d, and %d \n", imu_data->x_gyro, imu_data->y_gyro, imu_data->z_gyro);
 	//printf("Magneto : %d, %d, and %d \n", imu_data->x_mag, imu_data->y_mag, imu_data->z_mag);
+	normalize_accelero(imu_data);
+	imu_data->accelro_magneto_rpy.pitch = atan2(imu_data->y_accel, imu_data->z_accel) * RAD2DEG;
+	imu_data->accelro_magneto_rpy.roll = atan2(imu_data->x_accel, imu_data->z_accel) * RAD2DEG;
+
 
 }
+void normalize_accelero(mpu_data *imu_data)
+{
+	float32_t norm_acc;
+	arm_status arm_status_temp;
 
+	arm_status_temp = arm_sqrt_f32((float32_t)imu_data->x_accel * imu_data->x_accel + (float32_t)imu_data->y_accel * imu_data->y_accel
+				+ imu_data->z_accel * imu_data->z_accel, &norm_acc);
+
+		if(arm_status_temp != ARM_MATH_SUCCESS)
+		{
+			printf("error sqrt! %d \n", arm_status_temp);
+			while(1);
+		}
+		imu_data->x_accel /= norm_acc;
+		imu_data->y_accel = norm_acc;
+		//imu_data->z_accel /= norm_acc;
+}
 static void remove_gyro_bias(void)
 {
 
@@ -128,10 +149,10 @@ static void remove_gyro_bias(void)
 		z_bias += (int32_t)imu_data.z_gyro;
 		HAL_Delay(2);
 	}
-	x_gyro_bias =-(int16_t)(x_bias / 1000);
-	y_gyro_bias =-(int16_t)(y_bias / 1000);
-	z_gyro_bias =-(int16_t)(z_bias / 1000);
-	printf("x,y,z %d, %d, %d \n", x_gyro_bias, y_gyro_bias, z_gyro_bias);
+	x_gyro_bias = (int16_t)(x_bias / 1000);
+	y_gyro_bias = (int16_t)(y_bias / 1000);
+	z_gyro_bias = (int16_t)(z_bias / 1000);
+	//printf("x,y,z %d, %d, %d \n", x_gyro_bias, y_gyro_bias, z_gyro_bias);
 	HAL_Delay(100);
 	//mpu_write_reg(XG_OFFSET_H, (uint8_t)(x_gyro_bias >> 8));
 	//mpu_write_reg(XG_OFFSET_L, (uint8_t)(x_gyro_bias));

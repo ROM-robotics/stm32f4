@@ -231,10 +231,10 @@ void MPU_writeGyroFullScaleRange(SPI_HandleTypeDef *SPIx, MPU9250_t *pMPU9250, u
 void MPU_readRawData(SPI_HandleTypeDef *SPIx, MPU9250_t *pMPU9250)
 {
     // Init buffer
-    uint8_t buf[20];
+    uint8_t buf[14];
 
     // Subroutine for reading the raw data
-    MPU_REG_READ(SPIx, pMPU9250, ACCEL_XOUT_H, &buf[0], 20);
+    MPU_REG_READ(SPIx, pMPU9250, ACCEL_XOUT_H, &buf[0], 14);
 
     // Bit shift the data
     pMPU9250->rawData.ax = buf[0] << 8 | buf[1];
@@ -245,9 +245,9 @@ void MPU_readRawData(SPI_HandleTypeDef *SPIx, MPU9250_t *pMPU9250)
     pMPU9250->rawData.gy = buf[10] << 8 | buf[11];
     pMPU9250->rawData.gz = buf[12] << 8 | buf[13];
 
-    pMPU9250->rawData.mx = buf[15] << 8 | buf[14];
-    pMPU9250->rawData.my = buf[17] << 8 | buf[16];
-    pMPU9250->rawData.mz = buf[19] << 8 | buf[18];
+    //pMPU9250->rawData.mx = buf[15] << 8 | buf[14];
+    //pMPU9250->rawData.my = buf[17] << 8 | buf[16];
+    //pMPU9250->rawData.mz = buf[19] << 8 | buf[18];
 }
 
 /// @brief Find offsets for each axis of gyroscope

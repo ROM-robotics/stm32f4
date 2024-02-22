@@ -62,6 +62,14 @@
 #define ZG_OFFSET_H				0x17
 #define ZG_OFFSET_L				0x18
 
+#define RAD2DEG 				57.2957795131
+
+typedef struct{
+	float roll;
+	float pitch;
+	float yaw;
+}euler_angles;
+
 typedef struct{
 	int16_t x_accel;
 	int16_t y_accel;
@@ -72,6 +80,8 @@ typedef struct{
 	int16_t x_mag;
 	int16_t y_mag;
 	int16_t z_mag;
+	euler_angles accelro_magneto_rpy;
+	euler_angles gyro_rpy;
 } mpu_data;
 
 void ak8963_write_reg(uint8_t reg, uint8_t data);
@@ -79,5 +89,7 @@ void mpu_init(void);
 void mpu_write_reg(uint8_t reg, uint8_t data);
 void mpu_read_reg(uint8_t reg, uint8_t *data, uint8_t len);
 void mpu_read_sensor(mpu_data *imu_data);
+
+void normalize_accelero(mpu_data *imu_data);
 
 #endif /* INC_MPU9250_H_ */

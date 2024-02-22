@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "mpu9250.h"
 #include "stdio.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-int sum_gyro_x, sum_gyro_y, sum_gyro_z;
+float accel_pitch, accel_roll;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,20 +93,20 @@ int main(void)
   /* USER CODE BEGIN 2 */
   mpu_init();
   /* USER CODE END 2 */
-  
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 HAL_Delay(1000);
+	 //(1000);
 	 mpu_read_sensor(&imu_data);
-	 sum_gyro_x += imu_data.x_gyro;
-	 sum_gyro_y += imu_data.y_gyro;
-	 sum_gyro_z += imu_data.z_gyro;
+	 accel_roll = imu_data.accelro_magneto_rpy.roll;
+	 accel_pitch = imu_data.accelro_magneto_rpy.pitch;
 
-	 printf("Accelero : %d, %d, and %d \n", imu_data.x_accel, imu_data.y_accel, imu_data.z_accel);
-	 printf("Gyro : %d, %d, and %d \n", imu_data.x_gyro, imu_data.y_gyro, imu_data.z_gyro);
-	 printf("Magneto : %d, %d, and %d \n", imu_data.x_mag, imu_data.y_mag, imu_data.z_mag);
+	 printf("Accelero roll : %f\n", accel_roll);
+	 printf("Accelero pitch : %f\n", accel_pitch);
+	 //printf("Gyro : %d, %d, and %d \n", imu_data.x_gyro, imu_data.y_gyro, imu_data.z_gyro);
+	 //printf("Magneto : %d, %d, and %d \n", imu_data.x_mag, imu_data.y_mag, imu_data.z_mag);
 
 
     /* USER CODE END WHILE */

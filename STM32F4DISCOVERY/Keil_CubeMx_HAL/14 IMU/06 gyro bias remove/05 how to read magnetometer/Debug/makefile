@@ -61,7 +61,7 @@ main-build: 05\ how\ to\ read\ magnetometer.elf secondary-outputs
 
 # Tool invocations
 05\ how\ to\ read\ magnetometer.elf 05\ how\ to\ read\ magnetometer.map: $(OBJS) $(USER_OBJS) C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14\ IMU\06\ gyro\ bias\ remove\05\ how\ to\ read\ magnetometer\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "05 how to read magnetometer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\06 gyro bias remove\05 how to read magnetometer\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="05 how to read magnetometer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "05 how to read magnetometer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mr_robot\Desktop\GitRepo\stm32f4\STM32F4DISCOVERY\Keil_CubeMx_HAL\14 IMU\06 gyro bias remove\05 how to read magnetometer\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="05 how to read magnetometer.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

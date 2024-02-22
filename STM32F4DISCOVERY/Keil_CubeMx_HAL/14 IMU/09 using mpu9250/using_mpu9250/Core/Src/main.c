@@ -172,12 +172,12 @@ int _write(int file, char *ptr, int len)
 void mpu_callback(void)
 {
 	MPU_calcAttitude(&hspi2, &mpu);
-	//roll = mpu.attitude.r;
-	//pitch = mpu.attitude.p;
-	//yaw = mpu.attitude.y;
-	print_accelero(&mpu);
-	print_gyro(&mpu);
-	print_magneto(&mpu);
+	roll = mpu.attitude.r;
+	pitch = mpu.attitude.p;
+	yaw = mpu.attitude.y;
+	//print_accelero(&mpu);
+	//print_gyro(&mpu);
+	//print_magneto(&mpu);
 }
 /* USER CODE END 4 */
 
