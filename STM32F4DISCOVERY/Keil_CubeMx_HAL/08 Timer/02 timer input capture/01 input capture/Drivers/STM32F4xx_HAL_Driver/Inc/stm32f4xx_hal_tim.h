@@ -49,7 +49,7 @@ typedef struct
                                    This parameter can be a number between Min_Data = 0x0000 and Max_Data = 0xFFFF */
 
   uint32_t CounterMode;       /*!< Specifies the counter mode.
-                                   This parameter can be a value of @ref TIM_Counter_Mode	*/
+                                   This parameter can be a value of @ref TIM_Counter_Mode */
 
   uint32_t Period;            /*!< Specifies the period value to be loaded into the active
                                    Auto-Reload Register at the next update event.

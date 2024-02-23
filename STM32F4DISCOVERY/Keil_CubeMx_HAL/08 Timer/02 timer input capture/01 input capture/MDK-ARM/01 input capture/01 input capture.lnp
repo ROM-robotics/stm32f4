@@ -1,6 +1,8 @@
 --cpu=Cortex-M4.fp.sp
 "01 input capture\startup_stm32f407xx.o"
 "01 input capture\main.o"
+"01 input capture\gpio.o"
+"01 input capture\tim.o"
 "01 input capture\stm32f4xx_it.o"
 "01 input capture\stm32f4xx_hal_msp.o"
 "01 input capture\stm32f4xx_hal_tim.o"
