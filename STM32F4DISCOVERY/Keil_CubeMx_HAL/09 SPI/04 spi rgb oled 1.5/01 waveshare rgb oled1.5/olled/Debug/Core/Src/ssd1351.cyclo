@@ -1,0 +1,14 @@
+../Core/Src/ssd1351.c:5:13:SSD1351_Select	1
+../Core/Src/ssd1351.c:9:6:SSD1351_Unselect	1
+../Core/Src/ssd1351.c:13:13:SSD1351_Reset	1
+../Core/Src/ssd1351.c:22:13:SSD1351_WriteCommand	1
+../Core/Src/ssd1351.c:27:13:SSD1351_WriteData	2
+../Core/Src/ssd1351.c:39:13:SSD1351_SetAddressWindow	1
+../Core/Src/ssd1351.c:58:6:SSD1351_Init	1
+../Core/Src/ssd1351.c:153:6:SSD1351_DrawPixel	3
+../Core/Src/ssd1351.c:166:13:SSD1351_WriteChar	4
+../Core/Src/ssd1351.c:185:6:SSD1351_WriteString	5
+../Core/Src/ssd1351.c:211:6:SSD1351_FillRectangle	7
+../Core/Src/ssd1351.c:231:6:SSD1351_FillScreen	1
+../Core/Src/ssd1351.c:235:6:SSD1351_DrawImage	5
+../Core/Src/ssd1351.c:246:6:SSD1351_InvertColors	2
