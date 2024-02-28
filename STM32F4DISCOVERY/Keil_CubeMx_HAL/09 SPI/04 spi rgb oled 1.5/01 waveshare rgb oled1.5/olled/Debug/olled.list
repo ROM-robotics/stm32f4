@@ -31,23 +31,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  13 .comment      00000043  00000000  00000000  00020054  2**0
                   CONTENTS, READONLY
- 14 .debug_info   00006732  00000000  00000000  00020097  2**0
+ 14 .debug_info   00006723  00000000  00000000  00020097  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_abbrev 00001761  00000000  00000000  000267c9  2**0
+ 15 .debug_abbrev 00001730  00000000  00000000  000267ba  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_aranges 000006b8  00000000  00000000  00027f30  2**3
+ 16 .debug_aranges 000006b8  00000000  00000000  00027ef0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  0002022a  00000000  00000000  000285e8  2**0
+ 17 .debug_macro  0002022a  00000000  00000000  000285a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00008b25  00000000  00000000  00048812  2**0
+ 18 .debug_line   00008b1e  00000000  00000000  000487d2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000c18d3  00000000  00000000  00051337  2**0
+ 19 .debug_str    000c18dc  00000000  00000000  000512f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_rnglists 000004e1  00000000  00000000  00112c0a  2**0
+ 20 .debug_rnglists 000004e1  00000000  00000000  00112bcc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_frame  00001920  00000000  00000000  001130ec  2**2
+ 21 .debug_frame  00001920  00000000  00000000  001130b0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 000000b3  00000000  00000000  00114a0c  2**0
+ 22 .debug_line_str 000000b3  00000000  00000000  001149d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -495,6 +495,7 @@ int main(void)
  8000590:	f000 f9cc 	bl	800092c <MX_SPI2_Init>
   /* USER CODE BEGIN 2 */
 
+    //SSD1351_Unselect();
 	SSD1351_Init();
  8000594:	f000 fb1e 	bl	8000bd4 <SSD1351_Init>
   {
@@ -504,7 +505,6 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  loop();
  8000598:	f000 f86c 	bl	8000674 <loop>
-  {
  800059c:	e7fc      	b.n	8000598 <main+0x18>
 	...
 
@@ -643,7 +643,7 @@ void SystemClock_Config(void)
 08000674 <loop>:
 
 /* USER CODE BEGIN 4 */
-void loop() {
+void loop(void) {
  8000674:	b580      	push	{r7, lr}
  8000676:	b086      	sub	sp, #24
  8000678:	af04      	add	r7, sp, #16
@@ -709,6 +709,7 @@ void loop() {
     HAL_Delay(3000);
  80006e4:	f640 30b8 	movw	r0, #3000	; 0xbb8
  80006e8:	f000 fe22 	bl	8001330 <HAL_Delay>
+
 
     // Check fonts
     SSD1351_FillScreen(SSD1351_BLACK);
@@ -944,6 +945,7 @@ void loop() {
     HAL_Delay(10000);
  80008d2:	f242 7010 	movw	r0, #10000	; 0x2710
  80008d6:	f000 fd2b 	bl	8001330 <HAL_Delay>
+
 }
  80008da:	bf00      	nop
  80008dc:	3708      	adds	r7, #8

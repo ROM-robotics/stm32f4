@@ -59,7 +59,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t x_offset = 16;
+void loop(void);
 /* USER CODE END 0 */
 
 /**
@@ -92,6 +93,7 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
+    //SSD1351_Unselect();
 	SSD1351_Init();
   /* USER CODE END 2 */
 
@@ -154,7 +156,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void loop() {
+void loop(void) {
     // Check border
     SSD1351_FillScreen(SSD1351_BLACK);
 
@@ -169,6 +171,7 @@ void loop() {
     }
 
     HAL_Delay(3000);
+
 
     // Check fonts
     SSD1351_FillScreen(SSD1351_BLACK);
@@ -219,6 +222,7 @@ void loop() {
     SSD1351_DrawImage(0, 0, 128, 128, (const uint16_t*)test_img_128x128);
 
     HAL_Delay(10000);
+
 }
 /* USER CODE END 4 */
 

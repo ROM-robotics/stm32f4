@@ -55,7 +55,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t rx = 0;
+uint8_t rx;
 /* USER CODE END 0 */
 
 /**
@@ -71,6 +71,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+
   HAL_Init();
 
   /* USER CODE BEGIN Init */
@@ -88,7 +89,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -96,21 +98,10 @@ int main(void)
   while (1)
   {
 		HAL_UART_Receive_IT(&huart2, &rx, 1);
-		if(rx == 103) { // "g"
-			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
-		}
-		else if(rx == 111) { // "o"
-			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
-		}
-		else if(rx == 114) { // "r"
-			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-		}
-		else if(rx == 98) {  // "b"
-			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_15);
-		}
-    /* USER CODE END WHILE */
+     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		HAL_Delay(300);
   }
   /* USER CODE END 3 */
 }
@@ -161,7 +152,21 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(rx == 103)				{ // "g"
+			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
+		}
+		else if(rx == 111)	{ // "o"
+			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+		}
+		else if(rx == 114) 	{ // "r"
+			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
+		}
+		else if(rx == 98)		{ // "b"
+			HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_15);
+		}
+}
 /* USER CODE END 4 */
 
 /**
