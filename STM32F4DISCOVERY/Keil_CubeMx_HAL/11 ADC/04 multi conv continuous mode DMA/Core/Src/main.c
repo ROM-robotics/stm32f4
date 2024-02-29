@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "dma.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -50,15 +51,12 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-int32_t adc_value = 0;
-float voltage = 0;
-int32_t read_adc1(void);
-#define adc_to_volt_constant 0.00322265625
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t adc_value[3];
 /* USER CODE END 0 */
 
 /**
@@ -89,25 +87,16 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *) adc_value, 3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		HAL_ADC_Start(&hadc1);
-		if(HAL_ADC_PollForConversion(&hadc1, 5) == HAL_OK)
-		{
-			adc_value = HAL_ADC_GetValue(&hadc1);
-		}
-		HAL_ADC_Stop(&hadc1);
-		
-		
-		voltage = adc_to_volt_constant * adc_value;
-		HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
