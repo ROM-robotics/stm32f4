@@ -51,6 +51,7 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 uint32_t counter_;
+uint32_t inputCaptureValue;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -101,8 +102,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-
-}	
+}
 
 /**
   * @brief System Clock Configuration
@@ -146,7 +146,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-uint32_t inputCaptureValue;
+
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
   UNUSED(htim);

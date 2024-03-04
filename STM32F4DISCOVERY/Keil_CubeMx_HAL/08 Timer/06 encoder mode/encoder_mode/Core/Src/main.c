@@ -57,6 +57,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 uint32_t counter_count = 0;
 int16_t counter=0;
+
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
 	counter_count = __HAL_TIM_GET_COUNTER(htim);
