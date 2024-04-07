@@ -51,7 +51,7 @@ int main(void)
 	
 	//---------------------------------------------------------------
 	HAL_CAN_Start(&hcan1);
-	HAL_CAN_ActivateNotification(&hcan1,CAN_IT_RX_FIFO0_MSG_PENDING);
+	HAL_CAN_ActivateNotification(&hcan1,CAN_IT_RX_FIFO0_MSG_PENDING );
 	
 	txHeader.DLC = 1; // data length
 	txHeader.IDE = CAN_ID_STD;
